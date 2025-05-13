@@ -1,0 +1,30 @@
+# CIS350 Meeting Instructions
+
+Hold a team meeting at least once a week in some format. Copy the following template below into a new document, naming it GVSU-CIS350-TEAMNAME-YYYY-MM-DD (replacing TEAMNAME with your team's name and the appropriate date fields). Commit it to this folder, ensuring it is up by each Sunday by 11:59pm. There should be a unique document for each meeting held.
+
+
+# Meeting Minutes Templates
+
+Team name:
+
+Members present:Aliece Bradley, Noelia Doman, and Nathaniel Tillery
+
+Date: 5/13/2025
+
+Time: 6:45pm - 7:45
+
+Discussion points:
+*Tentative meetings scheduled at 2pm every Monday to continue to stay up-to-date on the project. 
+*Discussed possible features of app - games, accessibility, customizable 
+*Games: weather history quiz, day in history quiz
+*Accessibility: high contrast available, supports multiple languages, audio option
+*Customizable: Multiple themes available (high contrast), reorganize widgets and change amount of days, celsius vs fahrenheit
+*Maybe get a radar screen – might be difficult so add as a ‘may / optional’ requirement
+*Use website to operate, possibly upgrade to raspberry pi to run physically on a screen if time and budget permit
+
+
+Goals for this week (include responsibilities)
+*Create a rough draft of the requirements document (aliece)
+*Familiarize with Github – get logged in and make sure you have access to our repository (all)
+*Familiarize and contribute to requirements document (Nate, Noelia)
+*Meeting for Friday 2 pm to discuss requirements document (all)
