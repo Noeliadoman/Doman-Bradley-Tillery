@@ -1,6 +1,6 @@
 # Team Name
 
-Project description (~1 Paragraph)
+Weather API with interactivity -- Data Processesing
 
 # Team Members and Roles
 
