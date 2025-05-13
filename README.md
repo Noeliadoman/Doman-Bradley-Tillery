@@ -1,6 +1,6 @@
-# Team Name
+# Weather Dashboard
 
-Weather API with interactivity -- Data Processesing
+Weather Dashboard with interactivity -- Data Processesing
 
 # Team Members and Roles
 
