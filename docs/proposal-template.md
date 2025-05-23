@@ -6,7 +6,7 @@ Team members: Nathaniel Tillery, Noelia Doman, and Aliece Bradley
 The purpose of this project is to create a working weather app or website. The website will be accessible and will display weather information. It will include a dynamic user interface and pull real information directly from the internet. It will be capable of displaying information relevant and desired by the end user in a way that is meant to be visually appealing to the creators.
 
 Key features:
- - Memory quiz game for recent weather
+ - Memory quiz game for recent weather (This will be done by clicking a game button, and having the program pull weather data from the API, then ask a question. i.e. "Welcome to Weather Game! Did it rain yesterday in [your location]?" It may or may not keep score, but that will be the basic premise of the game.
  - Accessibility (i.e. high contrast, audio option)
    + Settings screen (text size and other accesibility options)
    + 'Other' settings screen (location, celsius vs farenheit, other units such as mph winds etc)
