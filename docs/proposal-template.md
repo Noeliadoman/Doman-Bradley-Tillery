@@ -27,12 +27,12 @@ The methods will be blended together arbitarily in the way that is most convenie
 # Estimated Timeline
 This project will be completed within the six week timeline allowed in the class. We will make regular progress and have regular meetings, testing the project as we develop. 
 Major milestones will be:
- [x] Design document (16, May)
- [x] Code 'kickoff' (19, May)
- [ ] First progress check-in, homework 3 completion (24, May)
- [ ] Additional progress check-in (27, May)
- [ ] Progress check-in #3 (2, June)
- [ ] Finish project (Finals week)
+ -  Design document (16, May)
+ -  Code 'kickoff' (19, May)
+ -  First progress check-in, homework 3 completion (24, May)
+ -  Additional progress check-in (27, May)
+ -  Progress check-in #3 (2, June)
+ -  Finish project (Finals week)
 (Figure out what your major milestones for this project will be, including how long you anticipate it *may* take to reach that point)
 
 # Anticipated Problems
