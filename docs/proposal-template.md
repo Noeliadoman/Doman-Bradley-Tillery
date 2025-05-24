@@ -29,10 +29,10 @@ This project will be completed within the six week timeline allowed in the class
 Major milestones will be:
  [x] Design document (16, May)
  [x] Code 'kickoff' (19, May)
- [] First progress check-in, homework 3 completion (24, May)
- [] Additional progress check-in (27, May)
- [] Progress check-in #3 (2, June)
- [] Finish project (Finals week)
+ [ ] First progress check-in, homework 3 completion (24, May)
+ [ ] Additional progress check-in (27, May)
+ [ ] Progress check-in #3 (2, June)
+ [ ] Finish project (Finals week)
 (Figure out what your major milestones for this project will be, including how long you anticipate it *may* take to reach that point)
 
 # Anticipated Problems
