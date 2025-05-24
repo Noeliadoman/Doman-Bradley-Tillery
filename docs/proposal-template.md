@@ -1,4 +1,4 @@
-Team name:Weather Dashboard Team
+Team name:Weather Dashboard Team 
 
 Team members: Nathaniel Tillery, Noelia Doman, and Aliece Bradley
 
