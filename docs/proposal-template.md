@@ -29,7 +29,7 @@ This project will be completed within the six week timeline allowed in the class
 Major milestones will be:
  -  Design document (16, May)
  -  Code 'kickoff' (19, May)
- -  First progress check-in, homework 3 completion (24, May)
+ -  Final proposal draft, software requierents, progress check (24, May)
  -  Additional progress check-in (27, May)
  -  Progress check-in #3 (2, June)
  -  Finish project (Finals week)
