@@ -1,6 +1,6 @@
-# View Weather and Other Data use-case description
+# Weather Dashboard use-case description
 
-## Use Case:
+## Use Case: View Weather and Othere Data
 
 ## Actors: End User
 
