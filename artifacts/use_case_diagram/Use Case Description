@@ -12,6 +12,6 @@
 - The end user is able to view and/or interact with data presented
 - The end user finishes by leaving or closing the webpage
 
-##Cross Ref.: Requirement The system shall...., the website shall...., the website shall... 
+##Cross Ref.: Requirement The website shall display current temperature for end user's chosen location, the website shall display current precipitation, if applicable. The website shall display an error message if it encounters issues retreaving the weather data. 
 
 ##Use-Cases: The website must be operational and the website must successfully pull data from the API.
