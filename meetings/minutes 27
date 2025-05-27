@@ -1,0 +1,24 @@
+Group Meeting 2 – 24, May 2025
+Team name: Weather App Team
+Members present: Nathaniel Tillery, Aliece Bradley, and Noelia Doman
+Date: 24, April 2025
+Time: 9:00 AM - 12:00 PM
+Discussion points:
+ - Review updated .md project proposal file to ensure everyone agrees with changes; if not make more changes
+ - HW 3 discussion -- complete part 2 together for submission
+ - Code snippets idea review
+ - Discuss Gantt chart; we decided not to because we have good communication and believe it would slow us down. We will use the meeting minuta scriptura to plan our timeline and can provide documentation based on that.
+Goals for this week (include responsibilities)
+ - Begin development of app -- all put in at least 30 minutes
+ - Next meeting for Tuesday 27, May 2025 at 5:30 PM to review code progress
+ - Make use case and extended use case -- Nate for use case and Noelia for extended -- all discuss and turn in
+
+
+List of code to develop by next meeting:
+ - Make interaction with weather API online | Noelia
+ - Make location setting input / display | Noelia -- Nate to interface login with location settings
+ - Start GUI file; make skeleton | Aliece
+ - Draft login page using .txt or other .csv type file read from and written to directly from login page code | Nate
+ - Get some github website set up for team weather dashboard | Aliece
+ - Make art with pixel art or AI or graphic art | Nate to try pixel art and AI, Noelia to try online graphic; make a couple squares and compare during next meeting, decide path then; squares are Sunny, Cloudy, Part cloudy, Storm, Rain
+ - Start development on weather game; don't pull from API yet, just take and give input | Aliece
