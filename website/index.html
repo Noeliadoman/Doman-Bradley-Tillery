@@ -1,29 +1,57 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather Website</title>
-  <link rel="stylesheet" href="main.css" />
+    <meta charset="UTF-8">
+    <title>Weather Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="app-wrap">
-    <header>
-      <input type="text" autocomplete="off" class="search-box" placeholder="Search for a city..." />
-    </header>
-    <main>
-      <section class="location">
-        <div class="city">Allendale, US</div>
-        <div class="date">date here</div>
-      </section>
-      <div class="current">
-        <div class="temperature"><span>°f</span></div>
-        <div class="description">description</div>
-        <div class="high_temp">??°f</div>
-        <div class="low_temp">??°f</div>
-      </div>
-    </main>
-  </div>
-  <script src="main.py"></script>
+    <h1>Weather Search</h1>
+    <input type="text" id="location" placeholder="Enter city">
+    <button onclick="getWeather()">Search</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        const apiKey = '67cd66468ef30c43f5829b114b27c686'; // Visible to users
+
+        async function getWeather() {
+            const location = document.getElementById('location').value;
+            const response = await fetch(
+                `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${apiKey}`
+            );
+            const data = await response.json();
+            const resultDiv = document.getElementById('result');
+
+            if (data.cod === '404') {
+                resultDiv.innerHTML = `<p style="color: red;">Invalid location!</p>`;
+            } else {
+                const today = new Date();
+                const formattedDate = today.toLocaleDateString();
+
+                resultDiv.innerHTML = `
+                    <h2>Weather in ${location.charAt(0).toUpperCase() + location.slice(1)}</h2>
+                    <p>${formattedDate}</p>
+                    <p>${data.weather[0].description}</p>
+                    <p>Temperature: ${Math.round(data.main.temp)}°F</p>
+                    <p>Feels like: ${Math.round(data.main.feels_like)}°F</p>
+                    <p>High: ${Math.round(data.main.temp_max)}°F</p>
+                    <p>Low: ${Math.round(data.main.temp_min)}°F</p>
+                `;
+            }
+        }
+    </script>
 </body>
 </html>
