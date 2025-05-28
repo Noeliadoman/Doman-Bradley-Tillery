@@ -10,7 +10,7 @@ body {
   background-size: cover;
   background-position: top center;
 }
- 
+
 .app-wrap {
   display: flex;
   flex-direction: column;
@@ -66,7 +66,7 @@ main {
   font-size: 16px;
 }
 
-.current .temperature {
+.current .temp {
   color: #fff;
   font-size: 102px;
   font-weight: 900;
@@ -74,11 +74,11 @@ main {
   text-shadow: 2px 10px rgba(0, 0, 0, 0.6);
 }
 
-.current .temperature span {
+.current .temp span {
   font-weight: 500;
 }
 
-.current .description {
+.current .weather {
   color: #fff;
   font-size: 32px;
   font-weight: 700;
@@ -87,14 +87,7 @@ main {
   text-shadow: 0px 3px rgba(0, 0, 0, 0.4);
 }
 
-.current .high_temp {
-  color: #fff;
-  font-size: 24px;
-  font-weight: 500;
-  text-shadow: 0px 4px rgba(0, 0, 0, 0.4);
-}
-
-.current .low_temp {
+.current .hi-low {
   color: #fff;
   font-size: 24px;
   font-weight: 500;
