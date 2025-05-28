@@ -14,6 +14,10 @@ temperature = round(result.json()['main']['temp'])
 feels_like = round(result.json()['main']['feels_like'])
 high_temp = round(result.json()['main']['temp_max'])
 low_temp = round(result.json()['main']['temp_min'])
+location = f'{location[0].upper()}{location[1:]}'
+today = datetime.date.today()
+date = today.strftime("%d, %m %Y")
+
 print(f'The weather in {location[0].upper()}{location[1:]} is {temperature}F with {description}')
 print(f'It feels like {feels_like}F with a high of {high_temp}F and a low of {low_temp}F')
 
