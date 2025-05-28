@@ -10,7 +10,7 @@ body {
   background-size: cover;
   background-position: top center;
 }
-
+ 
 .app-wrap {
   display: flex;
   flex-direction: column;
