@@ -85,19 +85,27 @@
 </head>
 <body>
     <div class="weather-container"> 
-        <h1>Weather Website</h1>
-        <h2>Welcome!</h2>
-        <h3>Find the weather near you, search your city below.</h3>
-        <input type="text" id="location" placeholder="Enter city"> 
-        <button onclick="getWeather()">Search</button>
-        <h3>Not interested in the weather? Play the weather game!</h3>
-        <h4>click below and try your memory on previous weather.</h4>
-        <button onclick="startWeatherGame()" style="margin-top: 10px;">Weather Game</button>
-        <div class="result" id="result"></div>
-        <div class="weather-image">
-            <img id="weather-icon" src="Weatherconditions/default.jpg" alt="Weather Icon" width="100" />
+    <h1>Weather Website</h1>
+    <h2>Welcome!</h2>
+    <h3>Find the weather near you, search your city below.</h3>
+
+    <div class="top-section">
+        <div class="search-area">
+            <input type="text" id="location" placeholder="Enter city"> 
+            <button onclick="getWeather()">Search</button>
+        </div>
+        <div class="game-button">
+            <h3>Not interested in the weahter? Play the weather game!</h3>
+            <h4>click below and try your memory on previous weather.</h4>
+            <button onclick="startWeatherGame()">Weather Game</button>
         </div>
     </div>
+
+    <div class="result" id="result"></div>
+    <div class="weather-image">
+        <img id="weather-icon" src="Weatherconditions/default.jpg" alt="Weather Icon" width="100" />
+    </div>
+</div>
 
     <script>
         const apiKey = '67cd66468ef30c43f5829b114b27c686'; //api key
