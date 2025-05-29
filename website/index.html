@@ -92,7 +92,7 @@
         <button onclick="getWeather()">Search</button>
         <div class="result" id="result"></div>
         <div class="weather-image">
-            <img src="Weatherconditions/01n@2x.png" alt="Weather Icon" width="100" />
+            <img id="weather-icon" src="Weatherconditions/01n@2x.png" alt="Weather Icon" width="100" />
         </div>
     </div>
 
@@ -102,6 +102,8 @@
         async function getWeather() {
             const location = document.getElementById('location').value;
             const resultDiv = document.getElementById('result');
+            const weatherIcon = document.getElementById('weather-icon');
+            
 
             if (!location.trim()) {
                 resultDiv.innerHTML = '<p style="color:red;">Please enter a city name.</p>';
