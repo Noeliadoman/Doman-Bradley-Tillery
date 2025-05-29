@@ -115,6 +115,7 @@
                     `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${apiKey}`
                 );
                 const data = await response.json();
+                const weather = data.weather[0].description.toLowerCase();
 
                 if (data.cod === '404') {
                     resultDiv.innerHTML = `<p style="color: red;">Invalid location!</p>`;
