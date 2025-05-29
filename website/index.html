@@ -25,6 +25,10 @@
             text-align: center;
             transition: transform 0.3s ease;
         }
+        .weather-image {
+            margin-top: 20px;
+            text-align: center;
+        }
 
         .weather-container:hover {
             transform: translateY(-5px);
@@ -87,7 +91,8 @@
         <input type="text" id="location" placeholder="Enter city"> 
         <button onclick="getWeather()">Search</button>
         <div class="result" id="result"></div>
-        <img src="Weatherconditions/01n@2x.png" alt="Weather Icon" width="300" />
+        <div class="weather-image">
+            <img src="Weatherconditions/01n@2x.png" alt="Weather Icon" width="300" />
     </div>
 
     <script>
