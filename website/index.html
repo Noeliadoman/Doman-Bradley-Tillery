@@ -129,6 +129,27 @@
                         <p>High: ${Math.round(data.main.temp_max)}°F</p>
                         <p>Low: ${Math.round(data.main.temp_min)}°F</p>
                     `;
+                    if (weather.includes("few cloud")) {
+                        weatherIcon.src = "Weatherconditions/02d@2x.png";
+                    } else if (weather.includes("scattered clouds")) {
+                        weatherIcon.src = "Weatherconditions/03d@2x.png";
+                    } else if (weather.includes("clear sky")) {
+                        weatherIcon.src = "Weatherconditions/01d@2x.png";
+                    } else if (weather.includes("broken clouds")) {
+                        weatherIcon.src = "Weatherconditions/04d@2x.png";
+                    } else if (weather.includes("shower rain")) {
+                        weatherIcon.src = "Weatherconditions/09d@2x.png";
+                    } else if (weather.includes("rain")) {
+                        weatherIcon.src = "Weatherconditions/10d@2x.png";
+                    } else if (weather.includes("thunderstorm")) {
+                        weatherIcon.src = "Weatherconditions/11d@2x.png";
+                    } else if (weather.includes("snow")) {
+                        weatherIcon.src = "Weatherconditions/13d@2x.png";
+                    } else if (weather.includes("mist")) {
+                        weatherIcon.src = "Weatherconditions/50d@2x.png";
+                    } else {
+                        weatherIcon.src = "Weatherconditions/default.png"; 
+                    }
                 }
             } catch (error) {
                 resultDiv.innerHTML = `<p style="color: red;">There was an error. Please try again.</p>`;
