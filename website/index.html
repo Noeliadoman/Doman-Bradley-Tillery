@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Weather Website</title>
+    <title>Weather Website</title> //main title
     <style>
         body {
             font-family: 'montserrat', sans-serif;
@@ -80,17 +80,17 @@
     </style>
 </head>
 <body>
-    <div class="weather-container">
+    <div class="weather-container"> //box in middle of website
         <h1>Weather Website</h1>
         <h2>Welcome!</h2>
         <h3>Find the weather near you, search your city below.</h3>
-        <input type="text" id="location" placeholder="Enter city">
+        <input type="text" id="location" placeholder="Enter city"> //search box
         <button onclick="getWeather()">Search</button>
         <div class="result" id="result"></div>
     </div>
 
     <script>
-        const apiKey = '67cd66468ef30c43f5829b114b27c686'; // Your OpenWeatherMap API key
+        const apiKey = '67cd66468ef30c43f5829b114b27c686'; //api key
 
         async function getWeather() {
             const location = document.getElementById('location').value;
