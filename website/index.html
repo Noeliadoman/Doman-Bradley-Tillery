@@ -111,7 +111,12 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
+        .divider {
+            width: 1px;
+            background-color: #ccc;
+            height: 60px;
+            margin: 0 20px;
+        }
     </style>
 </head>
 <body>
@@ -125,6 +130,7 @@
             <input type="text" id="location" placeholder="Enter city"> 
             <button onclick="getWeather()">Search</button>
         </div>
+        <div class="divider"></div>
         <h3>Not interested in the weahter? Play the weather game!</h3>
         <h4>click below and try your memory on previous weather.</h4>
         <div class="game-button">
