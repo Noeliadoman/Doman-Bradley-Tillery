@@ -161,7 +161,7 @@
                 resultDiv.innerHTML = '<p style="color:red;">Please enter a city name.</p>';
                 return;
             } 
-
+ 
             try {
                 const response = await fetch(
                     `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${apiKey}`
