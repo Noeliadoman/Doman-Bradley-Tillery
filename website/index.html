@@ -34,7 +34,7 @@
         
         .GVSU-image {
             position: absolute;
-            top: 20px;
+            top: 10px;
             left: 30px;
             margin-top: 0;
             text-align: left;
@@ -156,6 +156,39 @@
             height: 60px;
             margin: 0 20px;
         }
+
+        /* Settings Modal */
+        #settings-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #settings-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            position: relative;
+        }
+
+        #close-settings {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -163,7 +196,7 @@
         <h1>GVSU Weather Dashboard</h1>
         <h2>Welcome!</h2>
         <div class="GVSU-image">
-            <img id=".GVSU-image" src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="100" />
+            <img id=".GVSU-image" src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="175" />
         </div>
 
 
@@ -193,7 +226,20 @@
             </div>
         </div>
 
-
+        <div id="settings-modal">
+            <div id="settings-content">
+                <button id="close-settings" onclick="closeSettings()">✖</button>
+                <h4>Settings</h4>
+                <label for="theme-select">Theme:</label>
+                <select id="theme-select" name="theme-select">
+                    <option value="default">Default</option>
+                    <option value="high-contrast">High Contrast</option>
+                    <option value="cool-blue">Cool Blue</option>
+                    <option value="pastel">Pastel</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
+        </div>
 
     </div>
     
@@ -274,10 +320,44 @@
 
         function userLogin() {
             alert("Login functionality not implemented yet.");
+
+            saveUserData();
+            retrieveUserData();
+        }
+
+        function saveUserData() {
+            // Prompt user for their username and password
+            const userName = prompt("Enter your username:");
+            if (!userName) {
+                alert("Username is required.");
+                return;
+            }
+            // Check if user already exists in localStorage
+            if (localStorage.getItem("user_" + userName)) {
+                alert("User already exists, logging in...");
+            } else {
+                alert("Creating new user...");
+                const password = prompt("Enter your password:");
+                if (!password) {
+                    alert("Password is required.");
+                    return;
+                }
+                // Save user data to localStorage (for demo purposes only)
+                localStorage.setItem("user_" + userName, password);
+                alert("User data saved locally.");
+            }
+        }
+
+        function retrieveUserData() {
+            alert("User data retrieval functionality not implemented yet.");
         }
 
         function openSettings() {
-            alert("Settings functionality not implemented yet.");
+            document.getElementById('settings-modal').style.display = 'flex';
+        }
+
+        function closeSettings() {
+            document.getElementById('settings-modal').style.display = 'none';
         }
 
     </script>
