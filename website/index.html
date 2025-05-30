@@ -24,11 +24,22 @@
             width: 100%;
             text-align: center;
             transition: transform 0.3s ease;
+            position: relative; /* Add this for absolute positioning of child */
         }
         .weather-image {
             margin-top: 20px;
             text-align: center;
         }
+
+        
+        .GVSU-image {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            margin-top: 0;
+            text-align: left;
+        }
+
 
         .weather-container:hover {
             transform: translateY(-5px);
@@ -108,12 +119,37 @@
             width: 100%;
         }
 
+
+        /* BUTTONS */
         .game-button {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             flex: 1;
         }
+
+        .login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: absolute;
+            top: 20px;
+            right: 140px; /* Adjust as needed to avoid overlap with logo and settings */
+        }
+
+        .settings {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: absolute;
+            top: 20px;
+            right: 30px; /* Align with the GVSU logo */
+        }
+
+
+
         .divider {
             width: 1px;
             background-color: #ccc;
@@ -124,34 +160,46 @@
 </head>
 <body>
     <div class="weather-container"> 
-    <h1>GVSU Weather Dashboard</h1>
-    <h2>Welcome!</h2>
-    <img src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="100" />
-    </div>
+        <h1>GVSU Weather Dashboard</h1>
+        <h2>Welcome!</h2>
+        <div class="GVSU-image">
+            <img id=".GVSU-image" src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="100" />
+        </div>
 
-    <div class="top-section">
-        <div class="search-area">
-            <h3>Find the weather near you, search your city below.</h3>
-            <input type="text" id="location" placeholder="Enter city"> 
-            <button onclick="getWeather()">Search</button>
-        </div>
-        <div class="divider"></div>
-        <div class="game-button">
-            <h3>Not interested in the report? Play the weather game!</h3>
-            <h4>click below and try your memory on previous weather.</h4>
-            <button onclick="startWeatherGame()">Weather Game</button>
-        </div>
-        <div class="login-and-settings">
-            <button onclick="alert('Login functionality not implemented yet.')">Login</button>
-            <button onclick="alert('Settings functionality not implemented yet.')">Settings</button>
-        </div>
-    </div>
 
-    <div class="result" id="result"></div>
-    <div class="weather-image">
-        <img id="weather-icon" src="Weatherconditions/default.jpg" alt="Weather Icon" width="100" />
+        <div class="top-section">
+                <div class="search-area">
+                    <h3>Find the weather near you, search your city below.</h3>
+                    <input type="text" id="location" placeholder="Enter city"> 
+                    <button onclick="getWeather()">Search</button>
+                </div>
+                <div class="divider"></div>
+                <div class="game-button">
+                    <h3>Not interested in the report? Play the weather game!</h3>
+                    <h4>click below and try your memory on previous weather.</h4>
+                    <button onclick="startWeatherGame()">Weather Game</button>
+                </div>
+                <div class="login">
+                    <button onclick="userLogin()">Login</button>
+                </div>
+                <div class="settings">
+                    <button onclick="openSettings()">Settings</button>
+                </div>
+            </div>
+
+            <div class="result" id="result"></div>
+            <div class="weather-image">
+                <img id="weather-icon" src="Weatherconditions/default.jpg" alt="Weather Icon" width="100" />
+            </div>
+        </div>
+
+
+
     </div>
-</div>
+    
+    
+
+    
 
     <script>
         const apiKey = '67cd66468ef30c43f5829b114b27c686'; //api key
@@ -205,7 +253,7 @@
                         weatherIcon.src = "Weatherconditions/10d@2x.png";
                     } else if (weather.includes("thunderstorm")) {
                         weatherIcon.src = "Weatherconditions/11d@2x.png";
-                    } else if (weather.includes("snow") || (weather.includes("light snow") || weather.includes("heavy snow") || weather.includes("sleet") || weather.includes("light shower sleet") || weather.includes("shower sleet") || weather.includes("light rain and show") || weather.includes("rain and snow") || weather.includes("shower snow") || weather.includes("heavy shower snow") || weather.includes("freezing rain")) {
+                    } else if (weather.includes("snow") || weather.includes("light snow") || weather.includes("heavy snow") || weather.includes("sleet") || weather.includes("light shower sleet") || weather.includes("shower sleet") || weather.includes("light rain and show") || weather.includes("rain and snow") || weather.includes("shower snow") || weather.includes("heavy shower snow") || weather.includes("freezing rain")) {
                         weatherIcon.src = "Weatherconditions/13d@2x.png";
                     } else if (weather.includes("mist") || weather.includes("smoke") || weather.includes("haze") || weather.includes("sand/dut whirls") || weather.includes("fog") || weather.includes("sand") || weather.includes("dust") || weather.includes("volcanic ash") || weather.includes("squalls") || weather.includes("tornado")) {
                         weatherIcon.src = "Weatherconditions/50d@2x.png";
@@ -224,10 +272,8 @@
         }
 
 
-        function userLogin(){
-
+        function userLogin() {
             alert("Login functionality not implemented yet.");
-
         }
 
         function openSettings() {
