@@ -1,23 +1,28 @@
-Group Meeting – 27, May 2025
+Group Meeting – 30, May 2025
 Team name: Weather App Team
 Members present: Nathaniel Tillery, Aliece Bradley, and Noelia Doman
-Date: 27, April 2025
-Time: 6:30 AM - 7:00 PM
+Date: 30, April 2025
+Time: 6:30 PM - 7:00 PM
+
 Discussion points:
- - Review progress on task list
- - Update task list
+ - Review, discuss, create, and turn in diagrams
+ - Code progress
+ - Update task list -- website is working properly
+ - Review feedback given today by professor Raza -- no feedback given yet
+ - Consult on Local Storage; plan to use login info there instead of a csv file
+
 Goals for this week (include responsibilities)
  - Continue task list
- - Get the website up and start live testing / observation / interaction | do by the end of Friday
- - New meeting on Friday at 6:30 PM
- - Check due date of final project (June 5th)
+ - New meeting on Monday the second at 6:30 PM
+ - Group projects checkpoint
+
+
 
 
 Active Objectives:
- - Noelia found a good API and put a basic interface with it; it's able to pull information and display what it has
- - Make location setting input / display Just need to interface with GUI / login page | Nate, Aliece
- - Start GUI file; make skeleton | Aliece -- will start this week
- - Draft login page using .txt or other .csv type file read from and written to directly from login page code | Nate
- - Get some github website set up for team weather dashboard | Aliece -- Nate will offer some help and possibly launch the website this week
- - https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2 for art
- - Aliece has started development on the game plan for it to be in its own popup
+ - Continue development on login page and settings page | Nate
+ - Start develop on Weather Game | Aliece
+ - Specify city in weather search | Noelia
+ - Investigate correctness due to suspicion | All
+ - Continue work on project | All
+ - Gantt chart | Aliece
