@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8"> 
@@ -20,15 +20,26 @@
             border-radius: 16px;
             box-shadow: 1px 0px 10px 1px rgba(79, 158, 176);
             padding: 30px 40px;
-            max-width: 700px;
+            max-width: 900px;
             width: 100%;
             text-align: center;
             transition: transform 0.3s ease;
+            position: relative; /* Add this for absolute positioning of child */
         }
         .weather-image {
             margin-top: 20px;
             text-align: center;
         }
+
+        
+        .GVSU-image {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            margin-top: 0;
+            text-align: left;
+        }
+
 
         .weather-container:hover {
             transform: translateY(-5px);
@@ -108,43 +119,133 @@
             width: 100%;
         }
 
+
+        /* BUTTONS */
         .game-button {
             display: flex;
-            justify-content: flex-end;
+            flex-direction: column;
+            align-items: flex-start;
             flex: 1;
         }
+
+        .login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: absolute;
+            top: 20px;
+            right: 140px; /* Adjust as needed to avoid overlap with logo and settings */
+        }
+
+        .settings {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: absolute;
+            top: 20px;
+            right: 30px; /* Align with the GVSU logo */
+        }
+
+
+
         .divider {
             width: 1px;
             background-color: #ccc;
             height: 60px;
             margin: 0 20px;
         }
+
+        /* Settings Modal */
+        #settings-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #settings-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            position: relative;
+        }
+
+        #close-settings {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <div class="weather-container"> 
-    <h1>Weather Website</h1>
-    <h2>Welcome!</h2>
-
-    <div class="top-section">
-        <div class="search-area">
-            <h3>Find the weather near you, search your city below.</h3>
-            <input type="text" id="location" placeholder="Enter city"> 
-            <button onclick="getWeather()">Search</button>
+        <h1>GVSU Weather Dashboard</h1>
+        <h2>Welcome!</h2>
+        <div class="GVSU-image">
+            <img id=".GVSU-image" src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="175" />
         </div>
-        <div class="divider"></div>
-        <div class="game-button">
-            <h3>Not interested in the weahter? Play the weather game!</h3>
-            <h4>click below and try your memory on previous weather.</h4>
-            <button onclick="startWeatherGame()">Weather Game</button>
-        </div>
-    </div>
 
-    <div class="result" id="result"></div>
-    <div class="weather-image">
-        <img id="weather-icon" src="Weatherconditions/default.jpg" alt="Weather Icon" width="100" />
+
+        <div class="top-section">
+                <div class="search-area">
+                    <h3>Find the weather near you, search your city below.</h3>
+                    <input type="text" id="location" placeholder="Enter city"> 
+                    <button onclick="getWeather()">Search</button>
+                </div>
+                <div class="divider"></div>
+                <div class="game-button">
+                    <h3>Not interested in the report? Play the weather game!</h3>
+                    <h4>click below and try your memory on previous weather.</h4>
+                    <button onclick="startWeatherGame()">Weather Game</button>
+                </div>
+                <div class="login">
+                    <button onclick="userLogin()">Login</button>
+                </div>
+                <div class="settings">
+                    <button onclick="openSettings()">Settings</button>
+                </div>
+            </div>
+
+            <div class="result" id="result"></div>
+            <div class="weather-image">
+                <img id="weather-icon" src="Weatherconditions/default.jpg" alt="Weather Icon" width="100" />
+            </div>
+        </div>
+
+        <div id="settings-modal">
+            <div id="settings-content">
+                <button id="close-settings" onclick="closeSettings()">✖</button>
+                <h4>Settings</h4>
+                <label for="theme-select">Theme:</label>
+                <select id="theme-select" name="theme-select">
+                    <option value="default">Default</option>
+                    <option value="high-contrast">High Contrast</option>
+                    <option value="cool-blue">Cool Blue</option>
+                    <option value="pastel">Pastel</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
+        </div>
+
     </div>
-</div>
+    
+    
+
+    
 
     <script>
         const apiKey = '67cd66468ef30c43f5829b114b27c686'; //api key
@@ -154,9 +255,7 @@
             const resultDiv = document.getElementById('result');
             const weatherIcon = document.getElementById('weather-icon');
             
-        function startWeatherGame() {
-            alert("Welcome to the Weather Game! (put logic here.)");
-}
+        
             if (!location.trim()) {
                 resultDiv.innerHTML = '<p style="color:red;">Please enter a city name.</p>';
                 return;
@@ -200,7 +299,7 @@
                         weatherIcon.src = "Weatherconditions/10d@2x.png";
                     } else if (weather.includes("thunderstorm")) {
                         weatherIcon.src = "Weatherconditions/11d@2x.png";
-                    } else if (weather.includes("snow") || (weather.includes("light snow") || weather.includes("heavy snow") || weather.includes("sleet") || weather.includes("light shower sleet") || weather.includes("shower sleet") || weather.includes("light rain and show") || weather.includes("rain and snow") || weather.includes("shower snow") || weather.includes("heavy shower snow") || weather.includes("freezing rain")) {
+                    } else if (weather.includes("snow") || weather.includes("light snow") || weather.includes("heavy snow") || weather.includes("sleet") || weather.includes("light shower sleet") || weather.includes("shower sleet") || weather.includes("light rain and show") || weather.includes("rain and snow") || weather.includes("shower snow") || weather.includes("heavy shower snow") || weather.includes("freezing rain")) {
                         weatherIcon.src = "Weatherconditions/13d@2x.png";
                     } else if (weather.includes("mist") || weather.includes("smoke") || weather.includes("haze") || weather.includes("sand/dut whirls") || weather.includes("fog") || weather.includes("sand") || weather.includes("dust") || weather.includes("volcanic ash") || weather.includes("squalls") || weather.includes("tornado")) {
                         weatherIcon.src = "Weatherconditions/50d@2x.png";
@@ -212,6 +311,55 @@
                 resultDiv.innerHTML = `<p style="color: red;">There was an error. Please try again.</p>`;
             }
         }
+
+
+        function startWeatherGame() {
+            alert("Weather game functionality not implemented yet.");
+        }
+
+
+        function userLogin() {
+            alert("Login functionality not implemented yet.");
+
+            saveUserData();
+            retrieveUserData();
+        }
+
+        function saveUserData() {
+            // Prompt user for their username and password
+            const userName = prompt("Enter your username:");
+            if (!userName) {
+                alert("Username is required.");
+                return;
+            }
+            // Check if user already exists in localStorage
+            if (localStorage.getItem("user_" + userName)) {
+                alert("User already exists, logging in...");
+            } else {
+                alert("Creating new user...");
+                const password = prompt("Enter your password:");
+                if (!password) {
+                    alert("Password is required.");
+                    return;
+                }
+                // Save user data to localStorage (for demo purposes only)
+                localStorage.setItem("user_" + userName, password);
+                alert("User data saved locally.");
+            }
+        }
+
+        function retrieveUserData() {
+            alert("User data retrieval functionality not implemented yet.");
+        }
+
+        function openSettings() {
+            document.getElementById('settings-modal').style.display = 'flex';
+        }
+
+        function closeSettings() {
+            document.getElementById('settings-modal').style.display = 'none';
+        }
+
     </script>
 </body>
 </html>
