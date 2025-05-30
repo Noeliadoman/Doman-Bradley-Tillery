@@ -124,8 +124,10 @@
 </head>
 <body>
     <div class="weather-container"> 
-    <h1>Weather Website</h1>
+    <h1>GVSU Weather Dashboard</h1>
     <h2>Welcome!</h2>
+    <img src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="100" />
+    </div>
 
     <div class="top-section">
         <div class="search-area">
@@ -135,7 +137,7 @@
         </div>
         <div class="divider"></div>
         <div class="game-button">
-            <h3>Not interested in the weahter? Play the weather game!</h3>
+            <h3>Not interested in the report? Play the weather game!</h3>
             <h4>click below and try your memory on previous weather.</h4>
             <button onclick="startWeatherGame()">Weather Game</button>
         </div>
@@ -218,29 +220,20 @@
 
 
         function startWeatherGame() {
-            alert("Welcome to the Weather Game! (put logic here.)");
+            alert("Weather game functionality not implemented yet.");
         }
 
 
         function userLogin(){
 
             alert("Login functionality not implemented yet.");
-            warningPopup("Login functionality not implemented yet.");
+
         }
 
         function openSettings() {
             alert("Settings functionality not implemented yet.");
         }
 
-
-        //Coding this here to show user when there's an error or warning.
-        function warningPopup(warningString){
-            //Make new window
-            const warningWindow = window.open("", "Warning", "width=400,height=200");
-
-            //Add warning warningString
-            warningWindow.document.write(`<h1>${warningString}</h1>`);
-        }
     </script>
 </body>
 </html>
