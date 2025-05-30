@@ -139,6 +139,10 @@
             <h4>click below and try your memory on previous weather.</h4>
             <button onclick="startWeatherGame()">Weather Game</button>
         </div>
+        <div class="login-and-settings">
+            <button onclick="alert('Login functionality not implemented yet.')">Login</button>
+            <button onclick="alert('Settings functionality not implemented yet.')">Settings</button>
+        </div>
     </div>
 
     <div class="result" id="result"></div>
@@ -155,9 +159,7 @@
             const resultDiv = document.getElementById('result');
             const weatherIcon = document.getElementById('weather-icon');
             
-        function startWeatherGame() {
-            alert("Welcome to the Weather Game! (put logic here.)");
-}
+        
             if (!location.trim()) {
                 resultDiv.innerHTML = '<p style="color:red;">Please enter a city name.</p>';
                 return;
@@ -212,6 +214,32 @@
             } catch (error) {
                 resultDiv.innerHTML = `<p style="color: red;">There was an error. Please try again.</p>`;
             }
+        }
+
+
+        function startWeatherGame() {
+            alert("Welcome to the Weather Game! (put logic here.)");
+        }
+
+
+        function userLogin(){
+
+            alert("Login functionality not implemented yet.");
+            warningPopup("Login functionality not implemented yet.");
+        }
+
+        function openSettings() {
+            alert("Settings functionality not implemented yet.");
+        }
+
+
+        //Coding this here to show user when there's an error or warning.
+        function warningPopup(warningString){
+            //Make new window
+            const warningWindow = window.open("", "Warning", "width=400,height=200");
+
+            //Add warning warningString
+            warningWindow.document.write(`<h1>${warningString}</h1>`);
         }
     </script>
 </body>
