@@ -358,7 +358,7 @@
         <h1>GVSU Weather Dashboard</h1>
         <h2>Welcome!</h2>
         <div class="GVSU-image">
-            <img id=".GVSU-image" src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="175" />
+            <img id="GVSU-image" src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="175" />
         </div>
 
 
@@ -462,7 +462,7 @@
                         weatherIcon.src = "Weatherconditions/10d@2x.png";
                     } else if (weather.includes("thunderstorm")) {
                         weatherIcon.src = "Weatherconditions/11d@2x.png";
-                    } else if (weather.includes("snow") || weather.includes("light snow") || weather.includes("heavy snow") || weather.includes("sleet") || weather.includes("light shower sleet") || weather.includes("shower sleet") || weather.includes("light rain and show") || weather.includes("rain and snow") || weather.includes("shower snow") || weather.includes("heavy shower snow") || weather.includes("freezing rain")) {
+                    } else if (weather.includes("snow") || weather.includes("light snow") || weather.includes("heavy snow") || weather.includes("sleet") || weather.includes("light shower sleet") || weather.includes("shower sleet") || weather.includes("light rain and snow") || weather.includes("rain and snow") || weather.includes("shower snow") || weather.includes("heavy shower snow") || weather.includes("freezing rain")) {
                         weatherIcon.src = "Weatherconditions/13d@2x.png";
                     } else if (weather.includes("mist") || weather.includes("smoke") || weather.includes("haze") || weather.includes("sand/dut whirls") || weather.includes("fog") || weather.includes("sand") || weather.includes("dust") || weather.includes("volcanic ash") || weather.includes("squalls") || weather.includes("tornado")) {
                         weatherIcon.src = "Weatherconditions/50d@2x.png";
@@ -475,12 +475,6 @@
             }
         }
 
-
-        function startWeatherGame() {
-            const location = document.getElementById('location').value.trim();
-            const resultDiv = document.getElementById('result');
-            const weatherIcon = document.getElementById('weather-icon');
-        }
         const weatherOptions = [
             "Clear", "Few Clouds", "Scattered Clouds", "Broken Clouds",
             "Overcast Clouds", "Rain", "Thunderstorm", "Snow", "Mist", "Haze", "Fog"
@@ -600,29 +594,6 @@
                 console.error(error);
                 resultDiv.innerHTML = '<p style="color:red;">An error occurred while fetching weather data.</p>';
             }
-        }
-
-        function submitWeatherGuess(userGuess) {
-            const resultDiv = document.getElementById('result');
-            const gameArea = document.getElementById('game-area');
-            const isCorrect = userGuess === actualYesterdayWeather;
-
-            resultDiv.innerHTML = isCorrect
-                ? `<p style="color:green;">✅ Correct! It was "${actualYesterdayWeather}" yesterday in ${currentCity}.</p>`
-                : `<p style="color:red;">❌ Wrong! It was actually "${actualYesterdayWeather}" yesterday in ${currentCity}.</p>`;
-
-            // Disable all buttons after guess
-            const buttons = gameArea.querySelectorAll("button");
-            buttons.forEach(btn => {
-                btn.disabled = true;
-                if (btn.textContent === actualYesterdayWeather) {
-                    btn.style.border = "2px solid green";
-                    btn.style.backgroundColor = "#d4f4dd";
-                } else if (btn.textContent === userGuess) {
-                    btn.style.border = "2px solid red";
-                    btn.style.backgroundColor = "#f4d4d4";
-                }
-            });
         }
 
 
