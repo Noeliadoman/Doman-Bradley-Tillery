@@ -428,7 +428,7 @@
                 const data = await response.json();
                 const weather = data.weather[0].description.toLowerCase();
 
-                if (data.cod === '404') {
+                if (data.cod === 404) {
                     resultDiv.innerHTML = `<p style="color: red;">Invalid location!</p>`;
                 } else {
                     const today = new Date();
