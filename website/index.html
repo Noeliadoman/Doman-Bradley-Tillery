@@ -476,7 +476,108 @@
 
 
         function startWeatherGame() {
-            alert("Weather game functionality not implemented yet.");
+            const location = document.getElementById('location').value.trim();
+            const resultDiv = document.getElementById('result');
+            const weatherIcon = document.getElementById('weather-icon');
+        }
+        const weatherOptions = [
+            "Clear", "Few Clouds", "Scattered Clouds", "Broken Clouds",
+            "Overcast Clouds", "Rain", "Thunderstorm", "Snow", "Mist", "Haze", "Fog"
+        ];
+
+        let actualYesterdayWeather = ""; // will store actual weather
+        let currentCity = ""; // to remember city name
+
+        async function startWeatherGame() {
+            const location = document.getElementById('location').value.trim();
+            const gameArea = document.getElementById('game-area');
+            const resultDiv = document.getElementById('result');
+            const weatherIcon = document.getElementById('weather-icon');
+
+            if (!location) {
+                resultDiv.innerHTML = '<p style="color:red;">Please enter a city name.</p>';
+                return;
+            }
+
+            try {
+                // Get coordinates
+                const geoResponse = await fetch(
+                    `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${apiKey}`
+                );
+                const geoData = await geoResponse.json();
+
+                if (!geoData || geoData.length === 0) {
+                    resultDiv.innerHTML = '<p style="color:red;">Location not found.</p>';
+                    return;
+                }
+
+                const { lat, lon } = geoData[0];
+                currentCity = geoData[0].name;
+
+                const yesterdayTimestamp = Math.floor((Date.now() - 86400000) / 1000);
+
+                // Get yesterday's weather
+                const weatherResponse = await fetch(
+                    `https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${yesterdayTimestamp}&units=imperial&appid=${apiKey}`
+                );
+                const weatherData = await weatherResponse.json();
+
+                const weatherMain = weatherData.current.weather[0].main.toLowerCase();
+                const description = weatherData.current.weather[0].description.toLowerCase();
+
+                // Determine a readable category from description
+                if (description.includes("clear")) actualYesterdayWeather = "Clear";
+                else if (description.includes("few clouds")) actualYesterdayWeather = "Few Clouds";
+                else if (description.includes("scattered clouds")) actualYesterdayWeather = "Scattered Clouds";
+                else if (description.includes("broken clouds")) actualYesterdayWeather = "Broken Clouds";
+                else if (description.includes("overcast")) actualYesterdayWeather = "Overcast Clouds";
+                else if (description.includes("rain")) actualYesterdayWeather = "Rain";
+                else if (description.includes("thunderstorm")) actualYesterdayWeather = "Thunderstorm";
+                else if (description.includes("snow")) actualYesterdayWeather = "Snow";
+                else if (description.includes("mist")) actualYesterdayWeather = "Mist";
+                else if (description.includes("haze")) actualYesterdayWeather = "Haze";
+                else if (description.includes("fog")) actualYesterdayWeather = "Fog";
+                else actualYesterdayWeather = "Clear";
+
+                // Build the game UI
+                let gameHTML = `<h3>Guess what the weather was like yesterday in ${currentCity}:</h3>`;
+                weatherOptions.forEach(option => {
+                    gameHTML += `
+                        <button onclick="submitWeatherGuess('${option}')" class="weather-button">${option}</button>
+                    `;
+                });
+
+                gameArea.innerHTML = gameHTML;
+                resultDiv.innerHTML = ""; // clear previous result
+                weatherIcon.src = ""; // reset icon
+
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = '<p style="color:red;">An error occurred while fetching weather data.</p>';
+            }
+        }
+
+        function submitWeatherGuess(userGuess) {
+            const resultDiv = document.getElementById('result');
+            const gameArea = document.getElementById('game-area');
+            const isCorrect = userGuess === actualYesterdayWeather;
+
+            resultDiv.innerHTML = isCorrect
+                ? `<p style="color:green;">✅ Correct! It was "${actualYesterdayWeather}" yesterday in ${currentCity}.</p>`
+                : `<p style="color:red;">❌ Wrong! It was actually "${actualYesterdayWeather}" yesterday in ${currentCity}.</p>`;
+
+            // Disable all buttons after guess
+            const buttons = gameArea.querySelectorAll("button");
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent === actualYesterdayWeather) {
+                    btn.style.border = "2px solid green";
+                    btn.style.backgroundColor = "#d4f4dd";
+                } else if (btn.textContent === userGuess) {
+                    btn.style.border = "2px solid red";
+                    btn.style.backgroundColor = "#f4d4d4";
+                }
+            });
         }
 
 
