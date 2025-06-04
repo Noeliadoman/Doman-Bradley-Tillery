@@ -553,8 +553,6 @@
                     gameHTML += `<button onclick="submitWeatherGuess('${option}')" class="weather-button">${option}</button>`;
                 });
         
-                gameArea.innerHTML = gameHTML;
-                resultDiv.innerHTML = ""; // clear old results
         
             } catch (error) {
                 console.error(error);
