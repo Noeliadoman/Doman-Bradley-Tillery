@@ -1,6 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <meta charset="UTF-8"> 
     <title>Weather Website</title> 
     <style>
@@ -405,10 +406,6 @@
         </div>
 
     </div>
-    
-    
-
-    
 
     <script>
         const apiKey = '67cd66468ef30c43f5829b114b27c686'; //api key
@@ -553,7 +550,10 @@
                     gameHTML += `<button onclick="submitWeatherGuess('${option}')" class="weather-button">${option}</button>`;
                 });
         
-        
+                gameArea.innerHTML = gameHTML;
+                resultDiv.innerHTML = ""; // clear previous result
+                weatherIcon.src = ""; // reset icon
+                
             } catch (error) {
                 console.error(error);
                 resultDiv.innerHTML = '<p style="color:red;">An error occurred while fetching weather data.</p>';
