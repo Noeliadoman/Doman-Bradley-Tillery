@@ -480,7 +480,7 @@
         let actualTomorrowWeather = "";
         let currentCity = "";
 
-        async function startWeatherGame(apiKey) {
+        async function startWeatherGame() {
             const location = document.getElementById('location').value.trim();
             const gameArea = document.getElementById('game-area');
             const resultDiv = document.getElementById('result');
@@ -497,7 +497,7 @@
                 );
                 const data = await response.json();
 
-                if (data.cod !== "200") {
+                if (data.cod !== 200) {
                     resultDiv.innerHTML = `<p style="color:red;">${data.message || "Invalid location or error fetching forecast."}</p>`;
                     return;
                 }
