@@ -39,6 +39,11 @@
             left: 30px;
             margin-top: 0;
             text-align: left;
+            border: 2px solid #1e87c9;
+            border-radius: 8px;
+            padding: 8px 12px;
+            box-shadow: 0 2px 8px rgba(0,95,153,0.08);
+            display: inline-block;
         }
 
 
@@ -194,6 +199,12 @@
         body[data-theme="high-contrast"] {
             background: black !important;
             color: yellow !important;
+        }
+        body[data-theme="high-contrast"] .GVSU-image {
+            background-color: black !important;
+            color: yellow !important;
+            box-shadow: none !important;
+            border: 2px solid yellow;
         }
         body[data-theme="high-contrast"] h1 {
             color: yellow !important;
@@ -369,7 +380,7 @@
         <h1>GVSU Weather Dashboard</h1>
         <h2>Welcome!</h2>
         <div class="GVSU-image">
-            <img id="GVSU-image" src="GVSU Images/logoLong.jpg" alt="GVSU Logo" width="175" />
+            <img id="GVSU-image" src="GVSU Images/logoLong-modified.png" alt="GVSU Logo" width="175" />
         </div>
 
 
