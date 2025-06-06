@@ -380,6 +380,7 @@
 
     </style>
 </head>
+    
 <body data-theme="default">
     <div class="weather-container"> 
         <h1>GVSU Weather Dashboard</h1>
@@ -524,7 +525,7 @@
                 const data = await response.json();
 
                 if (data.cod !== 200) {
-                    resultDiv.innerHTML = `<p style="color:red;">${data.message || "Invalid location or error fetching forecast."}</p>`;
+                    resultDiv.innerHTML = `<p style="color:red;">${data.message || "Invalid location or error fetching forecast. This is the issue"}</p>`;
                     return;
                 }
 
