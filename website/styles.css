@@ -26,7 +26,7 @@ body {
     display: inline-block;
     border: 2px solid #1e87c9;
     border-radius: 8px;
-    padding: 8px 0px;
+    padding: 8px 1px;
     box-shadow: 0 2px 8px rgba(0,95,153,0.08);
     background-color: #ffffff;
 }
@@ -208,7 +208,7 @@ body[data-theme="high-contrast"] .GVSU-image {
 body[data-theme="high-contrast"] .weather-image {
     color: yellow !important;
     box-shadow: none !important;
-    border: 2px solid yellow;
+    border: 2px solid yellow !important;
 }
 body[data-theme="high-contrast"] #settings-content {
     background-color: black !important;
