@@ -30,7 +30,7 @@
                 </div>
                 <div id="game-area"></div>
                 <div class="login">
-                    <button onclick="userLogin()">Login</button>
+                    <button onclick="openLogin()">Login</button>
                 </div>
                 <div class="settings">
                     <button onclick="openSettings()">Settings</button>
@@ -57,6 +57,16 @@
                 </select>
             </div>
         </div>
+
+        <div id="login-modal">
+            <div id="login-content">
+              <button id="close-login" onclick="closeLogin()">✖</button>
+              <h4>Login</h4>
+              <input type="text" id="login-username" placeholder="Username" />
+              <input type="password" id="login-password" placeholder="Password" />
+              <button onclick="saveUserData()">Login / Register</button>
+            </div>
+         </div>
 
     </div>
 
@@ -237,11 +247,34 @@
         }
 
 
-        function userLogin() {
-            alert("Login functionality not implemented yet.");
 
-            saveUserData();
-            retrieveUserData();
+
+        /*LOGIN SCREEN*/
+        function openLogin() {
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+
+        function closeLogin() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+        document.getElementById("theme-select").addEventListener("change", function () {
+        const selectedTheme = this.value;
+        document.body.setAttribute("data-theme", selectedTheme);
+        });
+
+        function userLogin() {
+            // Check if user is logged in
+            const userName = localStorage.getItem("loggedInUser");
+            if (userName) {
+                alert(`Welcome back, ${userName}!`);
+                return;
+            }
+
+            // If not logged in, prompt for login
+            userLogin();
+
+
+    
         }
 
         function saveUserData() {
@@ -283,5 +316,7 @@
         document.body.setAttribute("data-theme", selectedTheme);
         });
     </script>
+
+    
 </body>
 </html>
