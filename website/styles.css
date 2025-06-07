@@ -322,6 +322,18 @@ body[data-theme="pastel"] h1 {
     color: #4b4b4b !important;
 }
 
+body[data-theme="pastel"] .GVSU-image {
+    color: #4b4b4b !important;
+    box-shadow: none !important;
+    border: 2px solid #fbd3e9;
+    background-color: #fffafc !important;
+}
+body[data-theme="pastel"] .weather-image {
+    color: #4b4b4b !important;
+    box-shadow: none !important;
+    border: 2px solid #fbd3e9;
+}
+
 body[data-theme="pastel"] .weather-container {
     background-color: #fffafc !important;
     color: #4b4b4b !important;
