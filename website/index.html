@@ -175,16 +175,28 @@
         }
 
         function saveUserData() {
-            // Prompt user for their username and password
-            const userName = prompt("Enter your username:");
-            if (!userName) {
-                alert("Username is required.");
-                return;
-            }
+            const userName = null;
+            const userNameInput = null;
+            const password = null;
+            const passwordInput = null;
+
             // Check if user already exists in localStorage
-            if (localStorage.getItem("user_" + userName)) {
-                alert("User already exists, logging in...");
-            } else {
+            userName = retrieveUserData();
+            if(!localStorage.getItem("user_" + userName)){ //if username doesn't already exist
+                // Prompt user for their username and password
+                userName = prompt("Enter your username:"); //save username
+                if (!userName) {
+                    alert("Username is required.");
+                    return;
+                }
+                //make a password
+                
+            }
+            //otherwise, login.
+
+
+            
+            else {
                 alert("Creating new user...");
                 const password = prompt("Enter your password:");
                 if (!password) {
