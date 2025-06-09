@@ -15,7 +15,7 @@ async function startWeatherGame() {
     );
     const data = await response.json();
 
-    if (data.cod !== 200) {
+    if (data.cod !== '200') {
       resultDiv.innerHTML = `<p style="color:red;">Error code: ${data.cod} - ${data.message || "Unknown error"}</p>`;
       return;
     }
