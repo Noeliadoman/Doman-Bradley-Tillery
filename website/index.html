@@ -64,7 +64,7 @@
               <h4>Login</h4>
               <input type="text" id="login-username" placeholder="Username" />
               <input type="password" id="login-password" placeholder="Password" />
-              <button onclick="saveUserData()">Login / Register</button>
+              <button onclick="userLogin()">Login / Register</button>
             </div>
          </div>
 
@@ -167,7 +167,6 @@
             // Check if user is logged in
             userName = localStorage.getItem("loggedInUser");
             if (userName) {
-                password = prompt("Please enter your password!");
                 alert(`Welcome back, ${userName}!`);
                 return;
             }
@@ -188,56 +187,25 @@
                 }
                 else{
                     if(!localStorage.getItem("user_" + userNameInput)){
-                        alert("Welcome, " + userNameInput + "! Please enter a password to register.");
+                        alert("Welcome, " + userNameInput + "! You will be prompted to register.");
+                        passwordInput = prompt("Please enter a password to register:");
+                        if (!passwordInput) {
+                            alert("Password is required.");
+                            return;
+                        }
                         localStorage.setItem("user_" + userNameInput, passwordInput);
                         return;
                     }
-                    alert("Incorrect username or password. Please try again.");
+                    else{
+                        alert("Incorrect username or password. Please try again.");
+                        return;
+                    }
+                    
                     return;
                 }
             }
             
-
-
     
-        }
-
-        function saveUserData() {
-            // Prompt user for their username and password
-            const userName = document.getElementById("login-username").value;
-            const password = document.getElementById("login-password").value;
-
-            if (!userName) {
-                alert("Username is required.");
-                return;
-            }
-            if (!password) {
-                alert("Password is required.");
-                return;
-            }
-
-            // Check if user already exists in localStorage
-            if (!localStorage.getItem("user_" + userName)) {
-                // Save new user data to localStorage (for demo purposes only)
-                localStorage.setItem("user_" + userName, password);
-                alert("User registered and logged in!");
-                localStorage.setItem("loggedInUser", userName);
-                closeLogin();
-            } else {
-                // Check password for existing user
-                const storedPassword = localStorage.getItem("user_" + userName);
-                if (storedPassword === password) {
-                    alert("Welcome back, " + userName + "!");
-                    localStorage.setItem("loggedInUser", userName);
-                    closeLogin();
-                } else {
-                    alert("Incorrect username or password. Please try again.");
-                }
-            }
-        }
-
-        function retrieveUserData() {
-            alert("User data retrieval functionality not implemented yet.");
         }
 
         function openSettings() {
