@@ -143,7 +143,6 @@
         let actualTomorrowWeather = "";
         let currentCity = "";
 
-// game script is after this for now, might need to rearrange some of the order
 
 
         /*LOGIN SCREEN*/
@@ -160,52 +159,80 @@
         });
 
         function userLogin() {
+            const userName = null;
+            const userNameInput = null;
+            const password = null;
+            const passwordInput = null;
+            
             // Check if user is logged in
-            const userName = localStorage.getItem("loggedInUser");
+            userName = localStorage.getItem("loggedInUser");
             if (userName) {
+                password = prompt("Please enter your password!");
                 alert(`Welcome back, ${userName}!`);
                 return;
             }
-
-            // If not logged in, prompt for login
-            userLogin();
+            else{
+                userNameInput = prompt("Please enter your username:");
+                if (!userNameInput) {
+                    alert("Username is required.");
+                    return;
+                }
+                passwordInput = prompt("Please enter your password:");
+                if (!passwordInput) {
+                    alert("Password is required.");
+                    return;
+                }
+                if(userNameInput == userName && passwordInput == password){
+                    alert("Welcome back, " + userNameInput + "!");
+                    localStorage.setItem("loggedInUser", userNameInput);
+                }
+                else{
+                    if(!localStorage.getItem("user_" + userNameInput)){
+                        alert("Welcome, " + userNameInput + "! Please enter a password to register.");
+                        localStorage.setItem("user_" + userNameInput, passwordInput);
+                        return;
+                    }
+                    alert("Incorrect username or password. Please try again.");
+                    return;
+                }
+            }
+            
 
 
     
         }
 
         function saveUserData() {
-            const userName = null;
-            const userNameInput = null;
-            const password = null;
-            const passwordInput = null;
+            // Prompt user for their username and password
+            const userName = document.getElementById("login-username").value;
+            const password = document.getElementById("login-password").value;
+
+            if (!userName) {
+                alert("Username is required.");
+                return;
+            }
+            if (!password) {
+                alert("Password is required.");
+                return;
+            }
 
             // Check if user already exists in localStorage
-            userName = retrieveUserData();
-            if(!localStorage.getItem("user_" + userName)){ //if username doesn't already exist
-                // Prompt user for their username and password
-                userName = prompt("Enter your username:"); //save username
-                if (!userName) {
-                    alert("Username is required.");
-                    return;
-                }
-                //make a password
-                
-            }
-            //otherwise, login.
-
-
-            
-            else {
-                alert("Creating new user...");
-                const password = prompt("Enter your password:");
-                if (!password) {
-                    alert("Password is required.");
-                    return;
-                }
-                // Save user data to localStorage (for demo purposes only)
+            if (!localStorage.getItem("user_" + userName)) {
+                // Save new user data to localStorage (for demo purposes only)
                 localStorage.setItem("user_" + userName, password);
-                alert("User data saved locally.");
+                alert("User registered and logged in!");
+                localStorage.setItem("loggedInUser", userName);
+                closeLogin();
+            } else {
+                // Check password for existing user
+                const storedPassword = localStorage.getItem("user_" + userName);
+                if (storedPassword === password) {
+                    alert("Welcome back, " + userName + "!");
+                    localStorage.setItem("loggedInUser", userName);
+                    closeLogin();
+                } else {
+                    alert("Incorrect username or password. Please try again.");
+                }
             }
         }
 
