@@ -67,6 +67,7 @@
               <button onclick="userLogin()">Login / Register</button>
             </div>
          </div>
+         
 
     </div>
 
@@ -159,53 +160,45 @@
         });
 
         function userLogin() {
-            const userName = null;
-            const userNameInput = null;
-            const password = null;
-            const passwordInput = null;
-            
-            // Check if user is logged in
-            userName = localStorage.getItem("loggedInUser");
-            if (userName) {
-                alert(`Welcome back, ${userName}!`);
+            let loggedInUser = localStorage.getItem("loggedInUser");
+            if (loggedInUser) {
+                alert(`Welcome back, ${loggedInUser}!`);
                 return;
             }
-            else{
-                userNameInput = prompt("Please enter your username:");
-                if (!userNameInput) {
-                    alert("Username is required.");
-                    return;
-                }
-                passwordInput = prompt("Please enter your password:");
+
+            let userNameInput = prompt("Please enter your username:");
+            if (!userNameInput) {
+                alert("Username is required.");
+                return;
+            }
+
+            let storedPassword = localStorage.getItem("user_" + userNameInput);
+
+            if (storedPassword) {
+                // User exists, check password
+                let passwordInput = prompt("Please enter your password:");
                 if (!passwordInput) {
                     alert("Password is required.");
                     return;
                 }
-                if(userNameInput == userName && passwordInput == password){
+                if (passwordInput === storedPassword) {
                     alert("Welcome back, " + userNameInput + "!");
                     localStorage.setItem("loggedInUser", userNameInput);
+                } else {
+                    alert("Incorrect username or password. Please try again.");
                 }
-                else{
-                    if(!localStorage.getItem("user_" + userNameInput)){
-                        alert("Welcome, " + userNameInput + "! You will be prompted to register.");
-                        passwordInput = prompt("Please enter a password to register:");
-                        if (!passwordInput) {
-                            alert("Password is required.");
-                            return;
-                        }
-                        localStorage.setItem("user_" + userNameInput, passwordInput);
-                        return;
-                    }
-                    else{
-                        alert("Incorrect username or password. Please try again.");
-                        return;
-                    }
-                    
+            } else {
+                // User does not exist, register
+                alert("Welcome, " + userNameInput + "! You will be prompted to register.");
+                let passwordInput = prompt("Please enter a password to register:");
+                if (!passwordInput) {
+                    alert("Password is required.");
                     return;
                 }
+                localStorage.setItem("user_" + userNameInput, passwordInput);
+                localStorage.setItem("loggedInUser", userNameInput);
+                alert("Registration successful! You are now logged in as " + userNameInput + ".");
             }
-            
-    
         }
 
         function openSettings() {
