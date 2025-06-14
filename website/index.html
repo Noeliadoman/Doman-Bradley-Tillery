@@ -36,7 +36,9 @@
                     <button onclick="logoutUser()">Logout</button>
                 </div>
                 <div class="settings">
-                    <button onclick="openSettings()">Settings</button>
+                    <button onclick="openSettings()" style="display: flex; align-items: center; gap: 8px">
+                        <img src="assets/icons/settings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Settings Icon" width="24" height="24" />
+                    </button>
                 </div>
             </div>
 
@@ -63,13 +65,21 @@
 
         <div id="login-modal">
             <div id="login-content">
-              <button id="close-login" onclick="closeLogin()">✖</button>
-              <h4>Login</h4>
-              <input type="text" id="login-username" placeholder="Username" />
-              <input type="password" id="login-password" placeholder="Password" />
-              <button onclick="userLogin()">Login / Register</button>
+                <button id="close-login" onclick="closeLogin()">✖</button>
+                <h4>Login</h4>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/icons/person_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="User Icon" width="24" height="24" />
+                    <input type="text" id="login-username" placeholder="Username" />
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <img src="assets/icons/password_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Lock Icon" width="24" height="24" onerror="this.onerror=null;this.src='assets/icons/lock.png';" />
+                    <label for="login-password" style="display:none;">Password</label>
+                    <input type="password" id="login-password" placeholder="Password" />
+                </div>
+                <button onclick="userLogin()">Login</button>
+                <button onclick="registerUser()">Register</button>
             </div>
-         </div>
+        </div>
          
 
     </div>
@@ -162,47 +172,61 @@
         document.body.setAttribute("data-theme", selectedTheme);
         });
 
-        function userLogin() {
-            let loggedInUser = localStorage.getItem("loggedInUser");
-            if (loggedInUser) {
-                alert(`Welcome back, ${loggedInUser}!`);
-                closeLogin();
-                return;
-            }
+        function registerUser() {
+            const username = document.getElementById("login-username").value.trim();
+            const password = document.getElementById("login-password").value.trim();
 
-            let userNameInput = prompt("Please enter your username:");
-            if (!userNameInput) {
+            if (!username) {
                 alert("Username is required.");
                 return;
             }
+            if (!password) {
+                alert("Password is required.");
+                return;
+            }
 
-            let storedPassword = localStorage.getItem("user_" + userNameInput);
+            // Check if user already exists
+            if (localStorage.getItem("user_" + username)) {
+                alert("Username already exists. Please choose a different username.");
+                return;
+            }
+
+            // Register new user
+            localStorage.setItem("user_" + username, password);
+            localStorage.setItem("loggedInUser", username);
+            alert("Registration successful! You are now logged in as " + username + ".");
+            closeLogin();
+            updateLoggedInStatus();
+        }
+
+        function userLogin() {
+            const username = document.getElementById("login-username").value.trim();
+            const password = document.getElementById("login-password").value.trim();
+
+            if (!username) {
+                alert("Username is required.");
+                return;
+            }
+            if (!password) {
+                alert("Password is required.");
+                return;
+            }
+
+            const storedPassword = localStorage.getItem("user_" + username);
 
             if (storedPassword) {
                 // User exists, check password
-                let passwordInput = prompt("Please enter your password:");
-                if (!passwordInput) {
-                    alert("Password is required.");
-                    return;
-                }
-                if (passwordInput === storedPassword) {
-                    alert("Welcome back, " + userNameInput + "!");
-                    localStorage.setItem("loggedInUser", userNameInput);
+                if (password === storedPassword) {
+                    localStorage.setItem("loggedInUser", username);
+                    alert("Welcome back, " + username + "!");
+                    closeLogin();
+                    updateLoggedInStatus();
                 } else {
                     alert("Incorrect username or password. Please try again.");
                 }
             } else {
-                // User does not exist, register
-                alert("Welcome, " + userNameInput + "! You will be prompted to register.");
-                let passwordInput = prompt("Please enter a password to register:");
-                if (!passwordInput) {
-                    alert("Password is required.");
-                    return;
-                }
-                localStorage.setItem("user_" + userNameInput, passwordInput);
-                localStorage.setItem("loggedInUser", userNameInput);
-                alert("Registration successful! You are now logged in as " + userNameInput + ".");
-                closeLogin();
+                // User does not exist
+                alert("User does not exist. Please register.");
             }
         }
 
@@ -213,6 +237,7 @@
         function closeSettings() {
             document.getElementById('settings-modal').style.display = 'none';
         }
+        
         document.getElementById("theme-select").addEventListener("change", function () {
         const selectedTheme = this.value;
         document.body.setAttribute("data-theme", selectedTheme);
