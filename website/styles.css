@@ -168,6 +168,15 @@ button:hover {
     top: 20px;
     right: 140px; /* Adjust as needed to avoid overlap with logo and settings */
 }
+.logout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: absolute;
+    top: 20px;
+    right: 140px; /* Adjust as needed to avoid overlap with logo and settings */
+}
 
 .settings {
     display: flex;
