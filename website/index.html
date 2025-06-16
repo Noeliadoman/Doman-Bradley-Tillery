@@ -131,11 +131,12 @@
                     resultDiv.innerHTML = `
                         <h2>Weather in ${location.charAt(0).toUpperCase() + location.slice(1)}</h2>
                         <p>${formattedDate}</p>
-                        <p>${data.weather[0].description}</p>
                         <p>Temperature: ${Math.round(data.main.temp)}${unitSymbol}</p>
                         <p>Feels like: ${Math.round(data.main.feels_like)}${unitSymbol}</p>
                         <p>High: ${Math.round(data.main.temp_max)}${unitSymbol}</p>
                         <p>Low: ${Math.round(data.main.temp_min)}${unitSymbol}</p>
+                        <p>${data.weather[0].description}</p>
+
                     `;
                     if (weather.includes("few cloud")) {
                         weatherIcon.src = "assets/Weatherconditions/02d@2x.png";
