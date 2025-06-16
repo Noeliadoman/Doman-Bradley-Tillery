@@ -160,8 +160,6 @@ button:hover {
 }
 
 
-
-
 /* Parent container for top-right controls */
 .top-right-controls {
     position: absolute;
@@ -183,13 +181,11 @@ button:hover {
     height: 42px;
 }
 
-
-
-
-
-
-
-
+@media (prefers-color-scheme: high-contrast) {
+    #settings-icon {
+        content: url("assets/icons/settings_size24_black.png");
+    }
+}
 
 .divider {
     width: 1px;

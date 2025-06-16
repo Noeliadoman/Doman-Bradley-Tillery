@@ -37,8 +37,14 @@
                         <button onclick="logoutUser()">Logout</button>
                     </div>
                     <div class="settings">
-                        <button onclick="openSettings()" style="display: flex; align-items: center; gap: 8px">
-                            <img src="assets/icons/settings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Settings Icon" width="24" height="24" />
+                        <button onclick="openSettings()" style="display: flex; align-items: center; gap: 8px" aria-label="Open settings">
+                            <img 
+                                src="assets/icons/settings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" 
+                                alt="Settings Icon" 
+                                width="24" 
+                                height="24"
+                                id="settings-icon"
+                            />
                         </button>
                     </div>
                 </div>
@@ -52,8 +58,10 @@
 
         <div id="settings-modal">
             <div id="settings-content">
-                <button id="close-settings" onclick="closeSettings()">✖</button>
-                <h4>Settings</h4>
+                <div style="display: flex; align-items: center; justify-content: flex-start; padding-bottom: 10px;">
+                    <h4 style="font-size: 24px; font-weight: bold; margin: 0;">Settings</h4>
+                    <button id="close-settings" onclick="closeSettings()" style="margin-left: auto;">✖</button>
+                </div>
                 <label for="theme-select">Theme:</label>
                 <select id="theme-select" name="theme-select">
                     <option value="default">Default</option>
@@ -62,6 +70,7 @@
                     <option value="pastel">Pastel</option>
                     <option value="dark">Dark</option>
                 </select>    
+                <br>
                 <label for="unit-select">Temperature Unit:</label>
                 <select id="unit-select" name="unit-select">
                     <option value="imperial">Fahrenheit (°F)</option>
@@ -178,6 +187,7 @@
         document.getElementById("theme-select").addEventListener("change", function () {
         const selectedTheme = this.value;
         document.body.setAttribute("data-theme", selectedTheme);
+        changeSettingsIcon();
         });
 
         function registerUser() {
@@ -249,6 +259,7 @@
         document.getElementById("theme-select").addEventListener("change", function () {
         const selectedTheme = this.value;
         document.body.setAttribute("data-theme", selectedTheme);
+        changeSettingsIcon
         });
 
         function updateLoggedInStatus() {
@@ -280,14 +291,33 @@
             if (themeSelect) {
                 const savedTheme = themeSelect.value;
                 document.body.setAttribute("data-theme", savedTheme);
+                changeSettingsIcon();
             }
         };
         document.getElementById("unit-select").addEventListener("change", function () {
             selectedUnit = this.value;
             localStorage.setItem('weatherUnit', selectedUnit);
         });
+
+
+        function changeSettingsIcon() {
+            const theme = getTheme();
+
+            if (theme === "high-contrast") {
+                document.getElementById('settings-icon').src = 'assets/icons/settings_size24_black.png'; // Use your alternate icon path
+            } else {
+                document.getElementById('settings-icon').src = 'assets/icons/settings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png';
+            }
+        }
+
+        function getTheme(){
+            return document.body.getAttribute("data-theme");
+        }
+
+
+
     </script>
-    
+
     <script src="Game.js"></script>
 
     
