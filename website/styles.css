@@ -313,6 +313,9 @@ body[data-theme="high-contrast"] .result {
     background-color: black !important;
     color: yellow !important;
 }
+body[data-theme="high-contrast"] .result p {
+    color: #ffffff;
+}
 
 body[data-theme="high-contrast"] select {
     background-color: black;
@@ -418,7 +421,9 @@ body[data-theme="dark"] .result {
     background-color: #3a3a3a !important;
     color: #ffffff !important;
 }
-
+body[data-theme="dark"] .result p {
+    color: #ffffff;
+}
 body[data-theme="dark"] select {
     background-color: #333 !important;
     color: #ffffff !important;
@@ -468,7 +473,9 @@ body[data-theme="cool-blue"] .result {
     background-color: #22394f !important;
     color: #ffffff !important;
 }
-
+body[data-theme="cool-blue"] .result p {
+    color: #ffffff;
+}
 body[data-theme="cool-blue"] select {
     background-color: #1b2b3a !important;
     color: #ffffff !important;
