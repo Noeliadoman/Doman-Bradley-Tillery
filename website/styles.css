@@ -394,7 +394,7 @@ body[data-theme="dark"] .GVSU-image {
     background-color: #444 !important;
 }
 body[data-theme="dark"] .weather-image {
-    color: #444 !important;
+    color: #ffffff !important;
     box-shadow: none !important;
     border: 2px solid blue;
 }
