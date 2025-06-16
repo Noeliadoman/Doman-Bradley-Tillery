@@ -159,34 +159,35 @@ button:hover {
     flex: 1;
 }
 
-.login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
+
+
+
+/* Parent container for top-right controls */
+.top-right-controls {
     position: absolute;
     top: 20px;
-    right: 140px; /* Adjust as needed to avoid overlap with logo and settings */
-}
-.logout {
+    right: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Change to row for horizontal layout */
     align-items: center;
-    flex: 1;
-    position: absolute;
-    top: 20px;
-    right: 140px; /* Adjust as needed to avoid overlap with logo and settings */
+    gap: 15px; /* Space between controls */
 }
 
+/* Individual control styling */
+.login,
+.logout,
 .settings {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    position: absolute;
-    top: 20px;
-    right: 30px; /* Align with the GVSU logo */
+    flex-direction: row; /* Optional: keep children in a row if needed */
+    position: static;
+    height: 42px;
 }
+
+
+
+
+
+
 
 
 
