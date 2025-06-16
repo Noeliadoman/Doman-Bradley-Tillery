@@ -59,6 +59,11 @@
                     <option value="cool-blue">Cool Blue</option>
                     <option value="pastel">Pastel</option>
                     <option value="dark">Dark</option>
+                </select>    
+                <label for="unit-select">Temperature Unit:</label>
+                <select id="unit-select" name="unit-select">
+                    <option value="imperial">Fahrenheit (°F)</option>
+                    <option value="metric">Celsius (°C)</option>
                 </select>
             </div>
         </div>
@@ -100,8 +105,9 @@
  
             try {
                 const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${apiKey}`
+                     `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${selectedUnit}&appid=${apiKey}`
                 );
+                const unitSymbol = selectedUnit === 'imperial' ? '°F' : '°C';
                 const data = await response.json();
                 const weather = data.weather[0].description.toLowerCase();
 
@@ -115,10 +121,10 @@
                         <h2>Weather in ${location.charAt(0).toUpperCase() + location.slice(1)}</h2>
                         <p>${formattedDate}</p>
                         <p>${data.weather[0].description}</p>
-                        <p>Temperature: ${Math.round(data.main.temp)}°F</p>
-                        <p>Feels like: ${Math.round(data.main.feels_like)}°F</p>
-                        <p>High: ${Math.round(data.main.temp_max)}°F</p>
-                        <p>Low: ${Math.round(data.main.temp_min)}°F</p>
+                        <p>Temperature: ${Math.round(data.main.temp)}${unitSymbol}</p>
+                        <p>Feels like: ${Math.round(data.main.feels_like)}${unitSymbol}</p>
+                        <p>High: ${Math.round(data.main.temp_max)}${unitSymbol}</p>
+                        <p>Low: ${Math.round(data.main.temp_min)}${unitSymbol}</p>
                     `;
                     if (weather.includes("few cloud")) {
                         weatherIcon.src = "assests/Weatherconditions/02d@2x.png";
@@ -258,10 +264,26 @@
             updateLoggedInStatus();
             alert("You have been logged out.");
         }
-
+        let selectedUnit = 'imperial';
         window.onload = function() {
             updateLoggedInStatus();
+        
+            const savedUnit = localStorage.getItem('weatherUnit');
+            if (savedUnit) {
+                selectedUnit = savedUnit;
+                document.getElementById("unit-select").value = savedUnit;
+            }
+        
+            const themeSelect = document.getElementById("theme-select");
+            if (themeSelect) {
+                const savedTheme = themeSelect.value;
+                document.body.setAttribute("data-theme", savedTheme);
+            }
         };
+        document.getElementById("unit-select").addEventListener("change", function () {
+            selectedUnit = this.value;
+            localStorage.setItem('weatherUnit', selectedUnit);
+        });
     </script>
     
     <script src="Game.js"></script>
