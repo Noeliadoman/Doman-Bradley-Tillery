@@ -1,3 +1,5 @@
+const apiKey = '67cd66468ef30c43f5829b114b27c686'; //pasting again here just in case
+
 async function startWeatherGame() {
   const location = document.getElementById('location').value.trim();
   const gameArea = document.getElementById('game-area');
@@ -62,8 +64,22 @@ async function startWeatherGame() {
     else if (desc.includes("fog")) actualTomorrowWeather = "Fog";
     else actualTomorrowWeather = "Clear"; // fallback
 
+    //define potential questions
+    const questionTemplates = [
+      `How many inches is it predicted to rain in ${currentCity} tomorrow?`,
+      `What will the weather be like tomorrow in ${currentCity}?`,
+      `What do you think the high for tomorrow will be in ${currentCity}?`,
+      `How hot is Hell (MI)?`,
+      `How windy do you think it will be tomorrow in ${currentCity}?`
+      //add options for "a year ago today" if it works
+    ];
+    
+    // Randomly select a question
+    const randomIndex = Math.floor(Math.random() * questionTemplates.length);
+    const selectedQuestion = questionTemplates[randomIndex];    
+    
     // Build game UI
-    let gameHTML = `<h3>Guess tomorrow's weather in ${currentCity}:</h3>`;
+    let gameHTML = `<h3>${selectedQuestion}</h3>`;
     weatherOptions.forEach(option => {
       gameHTML += `<button onclick="submitWeatherGuess('${option}')" class="weather-button">${option}</button>`;
     });
