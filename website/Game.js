@@ -1,6 +1,3 @@
-const apiKey = '67cd66468ef30c43f5829b114b27c686'; //pasting again here just in case
-
-
 const weatherOptions = [
     "Clear", "Few Clouds", "Scattered Clouds", "Broken Clouds",
     "Overcast Clouds", "Rain", "Thunderstorm", "Snow", "Mist", "Haze", "Fog"
@@ -96,7 +93,7 @@ async function startWeatherGame() {
         
     gameArea.innerHTML = gameHTML;
     resultDiv.innerHTML = ""; // clear previous result
-    weatherIcon.src = ""; // reset icon
+//    weatherIcon.src = ""; // reset icon
                 
   } catch (error) {
     console.error(error);
