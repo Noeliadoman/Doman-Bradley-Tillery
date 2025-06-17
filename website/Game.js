@@ -1,5 +1,15 @@
 const apiKey = '67cd66468ef30c43f5829b114b27c686'; //pasting again here just in case
 
+
+const weatherOptions = [
+    "Clear", "Few Clouds", "Scattered Clouds", "Broken Clouds",
+    "Overcast Clouds", "Rain", "Thunderstorm", "Snow", "Mist", "Haze", "Fog"
+];
+
+let actualTomorrowWeather = "";
+let currentCity = "";
+
+
 async function startWeatherGame() {
   const location = document.getElementById('location').value.trim();
   const gameArea = document.getElementById('game-area');
