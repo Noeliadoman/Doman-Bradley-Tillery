@@ -103,14 +103,16 @@ This Software Requirements Specification (SRS) outlines the final functional and
 
 The section is to provide a visual and structural representation of our application's design. The artifacts linked below help instructors, reviewers and developers understand how our system works. It emphasizes how users interaection, how things are organized and how the data flows. 
 
-* [Use Case Diagram](link_to_your_use_case.png)
+* [Use Case Diagram]([link_to_your_use_case.png](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/main/artifacts/use_case_diagram/Weather%20Dashboard%20Use-Case-Diagram.pdf))
 * [Class Diagram](link_to_your_class_diagram.png)
+* [Communication Diagram]([link_to_your_class_diagram.png](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/57d8baacaef8b988d7d846091f2c845442b3cef3/docs/Communication_Diagram.jpg))
+* [Object Diagram](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/57d8baacaef8b988d7d846091f2c845442b3cef3/docs/Object_Diagram.pdf)
 * [Sequence Diagram](link_to_your_sequence_diagram.png)
-* [GitHub Repository](https://github.com/your_team/your_project)
+* [GitHub Repository](https://github.com/Noeliadoman/Doman-Bradley-Tillery.git)
 
-# Test Specification (if added)
+# Test Specification 
 
-<Description of what this section is>
+This section outlines the testing strategy, test cases and validation criteria used to make sure the software system meets its functional and non-functional requirements. 
 
 ## Unit tests
 
