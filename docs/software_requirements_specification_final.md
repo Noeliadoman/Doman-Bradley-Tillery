@@ -103,9 +103,9 @@ This Software Requirements Specification (SRS) outlines the final functional and
 
 The section is to provide a visual and structural representation of our application's design. The artifacts linked below help instructors, reviewers and developers understand how our system works. It emphasizes how users interaection, how things are organized and how the data flows. 
 
-* [Use Case Diagram]([link_to_your_use_case.png](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/main/artifacts/use_case_diagram/Weather%20Dashboard%20Use-Case-Diagram.pdf))
+* [Use Case Diagram](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/main/artifacts/use_case_diagram/Weather%20Dashboard%20Use-Case-Diagram.pdf)
 * [Burn Down Chart](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/2605a936e5bd308caaf52aebef935c5dfb10f64e/artifacts/use_case_diagram/burndown.png)
-* [Communication Diagram]([link_to_your_class_diagram.png](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/57d8baacaef8b988d7d846091f2c845442b3cef3/docs/Communication_Diagram.jpg))
+* [Communication Diagram](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/57d8baacaef8b988d7d846091f2c845442b3cef3/docs/Communication_Diagram.jpg)
 * [Object Diagram](https://github.com/Noeliadoman/Doman-Bradley-Tillery/blob/57d8baacaef8b988d7d846091f2c845442b3cef3/docs/Object_Diagram.pdf)
 * [GitHub Repository](https://github.com/Noeliadoman/Doman-Bradley-Tillery.git)
 
