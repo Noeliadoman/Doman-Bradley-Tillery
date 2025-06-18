@@ -185,9 +185,7 @@ function submitSliderGuess() {
 
   // Feedback
   const diff = Math.abs(expectedAnswer - guess);
-  if (currentAnswerType != "rainfall" && diff < 3) {
-    resultDiv.innerHTML += `<br><span style="color:green;">✅ Great guess!</span>`;
-  } else if (diff < 1){
+  if (diff < 1){
     resultDiv.innerHTML += `<br><span style="color:green;">✅ Great guess!</span>`;
   } else {
     resultDiv.innerHTML += `<br><span style="color:red;"> Not quite. Try again tomorrow!</span>`;
