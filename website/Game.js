@@ -1,13 +1,14 @@
+//some variables to be used 
 const weatherOptions = [
   "Clear", "Few Clouds", "Scattered Clouds", "Broken Clouds",
   "Overcast Clouds", "Rain", "Thunderstorm", "Snow", "Mist", "Haze", "Fog"
 ];
-
 let actualTomorrowWeather = "";
 let currentCity = "";
 let currentAnswerType = "";
 let expectedAnswer = ""; 
 
+///Function to Start the Weather Game
 async function startWeatherGame() {
   const location = document.getElementById('location').value.trim();
   const gameArea = document.getElementById('game-area');
@@ -71,6 +72,7 @@ async function startWeatherGame() {
       `How many inches is it predicted to rain in ${currentCity} tomorrow?`,
       `What will the weather be like tomorrow in ${currentCity}?`,
       `What do you think the high for tomorrow will be in ${currentCity}?`,
+      `What do you think the low for tomorrow will be in ${currentCity}?`,
       `How windy do you think it will be tomorrow in ${currentCity}?`
     ];
 
@@ -85,7 +87,18 @@ async function startWeatherGame() {
       gameHTML += weatherOptions.map(option =>
         `<button onclick="submitWeatherGuess('${option}')" class="weather-button">${option}</button>`
       ).join("");
-    } else if (selectedQuestion.includes("high")) {
+    } else if (selectedQuestion.includes("low")) {
+      currentAnswerType = "temperature";
+      expectedAnswer = Math.round(
+        Math.min(...tomorrowForecasts.map(entry => entry.main.temp_min))
+      );
+      gameHTML += `
+        <label>Guess the low (°F):</label>
+        <input type="range" min="0" max="120" value="70" id="tempSlider" oninput="updateSliderDisplay('tempSlider', 'tempValue')">
+        <span id="tempValue">70</span>°F
+        <br><button onclick="submitSliderGuess()">Submit</button>
+      `;
+    }else if (selectedQuestion.includes("high")) {
       currentAnswerType = "temperature";
       expectedAnswer = Math.round(
         Math.max(...tomorrowForecasts.map(entry => entry.main.temp_max))
