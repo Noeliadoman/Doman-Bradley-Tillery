@@ -1,6 +1,8 @@
 # Overview
 
 This document is intended to convey a software requirements specification guide for the Weather Data team in CIS350-02 this semester at GVSU.
+This Software Requirements Specification (SRS) outlines the final functional and non-functional requirements for our Weather Dashboard application. The application uses the OpenWeatherMap API to allow users to search weather data by location, view forecasts, and interact with a weather guessing game. This document is intended for developers, stakeholders, and instructors to understand and validate the system's capabilities.
+
 
 # Functional Requirement
 
@@ -20,14 +22,26 @@ This document is intended to convey a software requirements specification guide 
     9. The user shall have the ability to change their location
     10. The website shall display an error if the location is not valid
   
-4. Weather Quiz Game (Whether weather)
+4. Weather Game
     11. The website shall have a game that uses the weather data to create a quiz for users
-    12. The game shall ask the user various questions about past weather data, testing their ability to recall recent events or guess on not-so-recent facts.
+    12. The user shall be able to guess the weather for the next day in a chosen city.
+    13. The system shall fetch forecast data for the next day.
+    14. The system shall compare the user's guess with the forecasted condition.
+    15. The system shall display correct or incorrect feedback.
   
-5. Settings & Accessibility
-    13. The website shall allow users to choose between Celsius and Fahrenheit.
-    14. The website shall have configurable text size
-    15. The website shall have various themes such as light/dark, high-contrast, or color blind mode 
+5. Settings & Accessibility and Login
+    16. The website shall allow users to choose between Celsius and Fahrenheit.
+    17. The user shall be able to initiate a login with a username.
+    18. The website shall have configurable text size
+    19. The website shall have various themes such as light/dark, high-contrast, or color blind mode
+    20. The system shall persist the selected theme during the session.
+
+6. Weather Search Feature
+    21. The user shall be able to input a city to search for weather data.
+    22. The system shall fetch weather data from the OpenWeatherMap API.
+    23. The system shall display current temperature, humidity, and weather condition.
+    24. The weather data shall include high and low temperatures.
+    25. The system shall display a weather condition icon that corresponds to the current weather.
 
 
 # Non-Functional Requirements
@@ -47,9 +61,19 @@ This document is intended to convey a software requirements specification guide 
     6. The website shall have a settings menu accessible from the main display page
     7. The settings menu shall be interactive
     8. The user interface shall be intuitive and usable by the average person with no prior training.
+    9. The system shall support high-contrast mode.
 
-10. Basic System things
-    9. The website must be able to handle a minimum of 10 users at a time
+10. Performance
+    10. The website must be able to handle a minimum of 10 users at a time
+    11. The system shall respond to user input within 5 seconds.
+    12. The API response shall be displayed within 5 second of retrieval.
+    13. The theme switch shall complete within 2 seconds.
+   
+11. Usability 
+    14. Font and layout shall be readable across devices.
+    15. Weather icons shall visually represent the forecast clearly.
+    16. Input fields shall have placeholders guiding user actions.
+
 
 
 
