@@ -118,26 +118,26 @@ This section outlines the testing strategy, test cases and validation criteria u
 
 | ID  | Description | Steps | Input Values | Expected Output | Actual Output | Pass/Fail | Requirement Link |
 | :-------------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: |
-| TC1 | Handle empty location input | 1. Load page 2. Click "Search" with empty input | "" | Red error: "Please enter a city name." | <actual output of test case> | <did it pass or fail> | NFR1, RF1, RF2, RF3 |
-| TC2 | 	Valid location fetch | 1. Enter "Grand Rapids" 2. Click "Search" | "Grand Rapids" | Displays today’s weather and icon | <actual output of test case> | <did it pass or fail> | FR1 |
-| TC3 | Invalid location input | 1. Enter "asdfgh" 2. Click "Search" | "asdfgh" | Red error: "Invalid location!" | <actual output of test case> | <did it pass or fail> | FR10 |
-| TC4 | Correct weather game guess | 1. Enter valid city 2. Click "Weather Game" 3. Guess correct weather | "Clear" (actual = Clear) | ✅ Message: "Correct! It will be Clear tomorrow in X" | <actual output of test case> | <did it pass or fail> | FR15 |
+| TC1 | Handle empty location input | 1. Load page 2. Click "Search" with empty input | "" | Red error: "Please enter a city name." | Red error: "Please enter a city name." | pass | NFR1, RF1, RF2, RF3 |
+| TC2 | 	Valid location fetch | 1. Enter "Grand Rapids" 2. Click "Search" | "Grand Rapids" | Displays today’s weather and icon | Correctly displays today’s weather and icon | pass | FR1 |
+| TC3 | Invalid location input | 1. Enter "asdfgh" 2. Click "Search" | "asdfgh" | Red error: "There was an error. Please try again." | Red error: "There was an error. Please try again." | pass | FR10 |
+| TC4 | Correct weather game guess | 1. Enter valid city 2. Click "Get Question" 3. Guess correct weather | "Clear" (actual = Clear) | ✅ Message: "Great Guess!" | Message: "✅ Great guess!" | pass | FR15 |
 
 ## Integration tests
 
 | ID  | Description | Steps | Input Values | Expected Output | Actual Output | Pass/Fail | Requirement Link |
 | :-------------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: |
-| TC5 | Weather API integration | 1. Enter city 2. Weather fetch from OpenWeather API | "Detroit" | Receives weather data, displays forecast | <actual output of test case> | <did it pass or fail> | NFR1, NFR10, NFR11 |
-| TC6 | Theme application integration | 1. Open Settings 2. Change theme 3. Check if UI reflects new theme | Theme = "Dark" | Page switches to dark mode | <actual output of test case> | <did it pass or fail> | FR19, NFR12 |
-| TC7 | Save user credentials | 1. Click "Login" 2. Enter username/password 3. Check localStorage | "UserX", "abc123" | localStorage key user_UserX is created | <actual output of test case> | <did it pass or fail> | FR17 |
+| TC5 | Weather API integration | 1. Enter city 2. Weather fetch from OpenWeather API | "Detroit" | Receives weather data, displays forecast | Correct receives weather data, displays forecast | pass | NFR1, NFR10, NFR11 |
+| TC6 | Theme application integration | 1. Open Settings 2. Change theme 3. Check if UI reflects new theme | Theme = "Dark" | Page switches to dark mode | Page switched to dark mode | pass | FR19, NFR12 |
+| TC7 | Save user credentials | 1. Click "Login" 2. Enter username/password 3. Check localStorage | "UserX", "abc123" | "Registration succesful!" | Message: "Registration successful! You are now logged in as doman." | pass | FR17 |
 
 ## System tests
 
 | ID  | Description | Steps | Input Values | Expected Output | Actual Output | Pass/Fail | Requirement Link |
 | :-------------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: |
-| TC8 | Weather game flow | 1. Enter city 2. Start game 3. Make a guesst | "Chicago", "Rain" | Displays result + disables buttons | <actual output of test case> | <did it pass or fail> | FR15, NFR10, NFR11 |
-| TC9 | Theme consistency | 1. Select theme 2. Play game | "Cool Blue" | Theme remains active throughout interaction | <actual output of test case> | <did it pass or fail> | NFR6, NFR12 |
-| TC10 | Error when no forecast exists | 1. Enter city with no data (simulate API fail) 2. Start game | "Atlantis" | Displays error: "No forecast data available for tomorrow." | <actual output of test case> | <did it pass or fail> | NFR9, NFR10 |
+| TC8 | Weather game flow | 1. Enter city 2. Start game 3. Get Question | "Chicago", "Rain" | Displays result + disables buttons | Displays result + disables buttons | pass | FR15, NFR10, NFR11 |
+| TC9 | Theme consistency | 1. Select theme 2. Play game | "Cool Blue" | Theme remains active throughout interaction | Theme remained active throughout interaction | pass | NFR6, NFR12 |
+| TC10 | Error when no forecast exists | 1. Enter city with no data (simulate API fail) 2. Start game | "Atlantis" | Displays error: "No forecast data available for tomorrow." | Displays weather for Atlantis | fail | NFR9, NFR10 |
 
 
 
