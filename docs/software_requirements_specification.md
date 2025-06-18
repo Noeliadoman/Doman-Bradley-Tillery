@@ -114,7 +114,6 @@ The section is to provide a visual and structural representation of our applicat
 
 ## Unit tests
 
-(copy/paste the below table a minimum of 4 times)
 
 | ID  | Description | Steps | Input Values | Expected Output | Actual Output | Pass/Fail | Requirement Link |
 | :-------------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: |
@@ -125,11 +124,19 @@ The section is to provide a visual and structural representation of our applicat
 
 ## Integration tests
 
-(copy/paste the above table a minimum of 3 times)
+| ID  | Description | Steps | Input Values | Expected Output | Actual Output | Pass/Fail | Requirement Link |
+| :-------------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: |
+| TC5 | Weather API integration | 1. Enter city 2. Weather fetch from OpenWeather API | "Detroit" | Receives weather data, displays forecast | <actual output of test case> | <did it pass or fail?> | <requirement IDs this test case is linked to> |
+| TC6 | Theme application integration | 1. Open Settings 2. Change theme 3. Check if UI reflects new theme | Theme = "Dark" | Page switches to dark mode | <actual output of test case> | <did it pass or fail?> | <requirement IDs this test case is linked to> |
+| TC7 | Save user credentials | 1. Click "Login" 2. Enter username/password 3. Check localStorage | "UserX", "abc123" | localStorage key user_UserX is created | <actual output of test case> | <did it pass or fail?> | <requirement IDs this test case is linked to> |
 
 ## System tests
 
-(copy/paste the above table a minimum of 3 times)
+| ID  | Description | Steps | Input Values | Expected Output | Actual Output | Pass/Fail | Requirement Link |
+| :-------------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: | :----------: |
+| TC8 | Weather game flow | 1. Enter city 2. Start game 3. Make a guesst | "Chicago", "Rain" | Displays result + disables buttons | <actual output of test case> | <did it pass or fail?> | <requirement IDs this test case is linked to> |
+| TC9 | Theme consistency | 1. Select theme 2. Play game | "Cool Blue" | Theme remains active throughout interaction | <actual output of test case> | <did it pass or fail?> | <requirement IDs this test case is linked to> |
+| TC10 | IError when no forecast exists | 1. Enter city with no data (simulate API fail) 2. Start game | "Atlantis" | Displays error: "No forecast data available for tomorrow." | <actual output of test case> | <did it pass or fail?> | <requirement IDs this test case is linked to> |
 
 
 
