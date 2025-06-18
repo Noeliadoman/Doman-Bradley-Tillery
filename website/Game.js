@@ -183,9 +183,11 @@ function submitSliderGuess() {
     resultDiv.innerHTML = `💨 Actual wind: ${expectedAnswer} mph<br>Your guess: ${guess} mph`;
   }
 
-  // Optional: Add color feedback
+  // Feedback
   const diff = Math.abs(expectedAnswer - guess);
-  if (diff < 3) {
+  if (currentAnswerType != "rainfall") && (diff < 3) {
+    resultDiv.innerHTML += `<br><span style="color:green;">✅ Great guess!</span>`;
+  } else if (diff < 1){
     resultDiv.innerHTML += `<br><span style="color:green;">✅ Great guess!</span>`;
   } else {
     resultDiv.innerHTML += `<br><span style="color:red;"> Not quite. Try again tomorrow!</span>`;
