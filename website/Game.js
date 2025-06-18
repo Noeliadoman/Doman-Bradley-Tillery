@@ -1,11 +1,12 @@
 const weatherOptions = [
-    "Clear", "Few Clouds", "Scattered Clouds", "Broken Clouds",
-    "Overcast Clouds", "Rain", "Thunderstorm", "Snow", "Mist", "Haze", "Fog"
+  "Clear", "Few Clouds", "Scattered Clouds", "Broken Clouds",
+  "Overcast Clouds", "Rain", "Thunderstorm", "Snow", "Mist", "Haze", "Fog"
 ];
 
 let actualTomorrowWeather = "";
 let currentCity = "";
-
+let currentAnswerType = "";
+let expectedAnswer = ""; 
 
 async function startWeatherGame() {
   const location = document.getElementById('location').value.trim();
@@ -18,7 +19,6 @@ async function startWeatherGame() {
   }
 
   try {
-    // Fetch 5-day forecast (3-hour steps)
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=imperial&appid=${apiKey}`
     );
@@ -31,7 +31,6 @@ async function startWeatherGame() {
 
     currentCity = data.city.name;
 
-    // Get tomorrow's date string (YYYY-MM-DD)
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
@@ -40,7 +39,6 @@ async function startWeatherGame() {
     const dd = String(tomorrow.getDate()).padStart(2, "0");
     const tomorrowDateStr = `${yyyy}-${mm}-${dd}`;
 
-    // Filter all forecast entries that match tomorrow's date
     const tomorrowForecasts = data.list.filter(entry => entry.dt_txt.startsWith(tomorrowDateStr));
 
     if (tomorrowForecasts.length === 0) {
@@ -48,7 +46,7 @@ async function startWeatherGame() {
       return;
     }
 
-    // Option 1: Pick the forecast closest to 12:00 PM (noon) tomorrow
+    // Closest to noon
     let targetForecast = tomorrowForecasts.reduce((prev, curr) => {
       const prevDiff = Math.abs(new Date(prev.dt_txt).getHours() - 12);
       const currDiff = Math.abs(new Date(curr.dt_txt).getHours() - 12);
@@ -56,8 +54,6 @@ async function startWeatherGame() {
     });
 
     const desc = targetForecast.weather[0].description.toLowerCase();
-        
-    // Map description to weatherOptions
     if (desc.includes("clear")) actualTomorrowWeather = "Clear";
     else if (desc.includes("few clouds")) actualTomorrowWeather = "Few Clouds";
     else if (desc.includes("scattered clouds")) actualTomorrowWeather = "Scattered Clouds";
@@ -69,48 +65,82 @@ async function startWeatherGame() {
     else if (desc.includes("mist")) actualTomorrowWeather = "Mist";
     else if (desc.includes("haze")) actualTomorrowWeather = "Haze";
     else if (desc.includes("fog")) actualTomorrowWeather = "Fog";
-    else actualTomorrowWeather = "Clear"; // fallback
+    else actualTomorrowWeather = "Clear";
 
-    //define potential questions
     const questionTemplates = [
       `How many inches is it predicted to rain in ${currentCity} tomorrow?`,
       `What will the weather be like tomorrow in ${currentCity}?`,
       `What do you think the high for tomorrow will be in ${currentCity}?`,
-      `How hot is Hell (MI)?`,
       `How windy do you think it will be tomorrow in ${currentCity}?`
-      //add options for "a year ago today" if it works
     ];
-    
-    // Randomly select a question
+
     const randomIndex = Math.floor(Math.random() * questionTemplates.length);
-    const selectedQuestion = questionTemplates[randomIndex];    
-    
-    // Build game UI
+    const selectedQuestion = questionTemplates[randomIndex];
+
     let gameHTML = `<h3>${selectedQuestion}</h3>`;
-    weatherOptions.forEach(option => {
-      gameHTML += `<button onclick="submitWeatherGuess('${option}')" class="weather-button">${option}</button>`;
-    });
-        
+
+    //determine question type & input
+    if (selectedQuestion.includes("weather")) {
+      currentAnswerType = "condition";
+      gameHTML += weatherOptions.map(option =>
+        `<button onclick="submitWeatherGuess('${option}')" class="weather-button">${option}</button>`
+      ).join("");
+    } else if (selectedQuestion.includes("high")) {
+      currentAnswerType = "temperature";
+      expectedAnswer = Math.round(
+        Math.max(...tomorrowForecasts.map(entry => entry.main.temp_max))
+      );
+      gameHTML += `
+        <label>Guess the high (°F):</label>
+        <input type="range" min="0" max="120" value="70" id="tempSlider" oninput="updateSliderDisplay('tempSlider', 'tempValue')">
+        <span id="tempValue">70</span>°F
+        <br><button onclick="submitSliderGuess()">Submit</button>
+      `;
+    } else if (selectedQuestion.includes("rain")) {
+      currentAnswerType = "rainfall";
+      let totalRain = tomorrowForecasts.reduce((sum, entry) => sum + (entry.rain?.["3h"] || 0), 0);
+      expectedAnswer = parseFloat(totalRain.toFixed(1));
+      gameHTML += `
+        <label>Guess rainfall (inches):</label>
+        <input type="range" min="0" max="10" step="0.1" value="0" id="rainSlider" oninput="updateSliderDisplay('rainSlider', 'rainValue')">
+        <span id="rainValue">0</span> inches
+        <br><button onclick="submitSliderGuess()">Submit</button>
+      `;
+    } else if (selectedQuestion.includes("wind")) {
+      currentAnswerType = "wind";
+      expectedAnswer = Math.round(
+        Math.max(...tomorrowForecasts.map(entry => entry.wind.speed))
+      );
+      gameHTML += `
+        <label>Guess wind speed (mph):</label>
+        <input type="range" min="0" max="50" value="10" id="windSlider" oninput="updateSliderDisplay('windSlider', 'windValue')">
+        <span id="windValue">10</span> mph
+        <br><button onclick="submitSliderGuess()">Submit</button>
+      `;
+    }
+
     gameArea.innerHTML = gameHTML;
-    resultDiv.innerHTML = ""; // clear previous result
-//    weatherIcon.src = ""; // reset icon
-                
+    resultDiv.innerHTML = "";
+
   } catch (error) {
     console.error(error);
     resultDiv.innerHTML = '<p style="color:red;">An error occurred while fetching weather data.</p>';
   }
 }
-        
+
+function updateSliderDisplay(sliderId, valueId) {
+  document.getElementById(valueId).textContent = document.getElementById(sliderId).value;
+}
+
 function submitWeatherGuess(userGuess) {
   const resultDiv = document.getElementById('result');
   const gameArea = document.getElementById('game-area');
   const isCorrect = userGuess === actualTomorrowWeather;
-        
+
   resultDiv.innerHTML = isCorrect
     ? `<p style="color:green;">✅ Correct! It will be "${actualTomorrowWeather}" tomorrow in ${currentCity}.</p>`
-    : `<p style="color:red;">❌ Wrong! It will actually be "${actualTomorrowWeather}" tomorrow in ${currentCity}.</p>`;
-        
-  // Disable buttons and color them
+    : `<p style="color:red;">❌ Not Quite! It will actually be "${actualTomorrowWeather}" tomorrow in ${currentCity}.</p>`;
+
   const buttons = gameArea.querySelectorAll("button");
   buttons.forEach(btn => {
     btn.disabled = true;
@@ -122,4 +152,35 @@ function submitWeatherGuess(userGuess) {
       btn.style.backgroundColor = "#f4d4d4";
     }
   });
+}
+
+// slider submissions
+function submitSliderGuess() {
+  const resultDiv = document.getElementById('result');
+  let guess = 0;
+
+  if (currentAnswerType === "temperature") {
+    guess = parseInt(document.getElementById('tempSlider').value);
+    resultDiv.innerHTML = `🌡️ Actual high: ${expectedAnswer}°F<br>Your guess: ${guess}°F`;
+  } else if (currentAnswerType === "rainfall") {
+    guess = parseFloat(document.getElementById('rainSlider').value);
+    resultDiv.innerHTML = `🌧️ Actual rain: ${expectedAnswer} in<br>Your guess: ${guess} in`;
+  } else if (currentAnswerType === "wind") {
+    guess = parseInt(document.getElementById('windSlider').value);
+    resultDiv.innerHTML = `💨 Actual wind: ${expectedAnswer} mph<br>Your guess: ${guess} mph`;
+  }
+
+  // Optional: Add color feedback
+  const diff = Math.abs(expectedAnswer - guess);
+  if (diff < 3) {
+    resultDiv.innerHTML += `<br><span style="color:green;">✅ Great guess!</span>`;
+  } else {
+    resultDiv.innerHTML += `<br><span style="color:red;"> Not quite. Try again tomorrow!</span>`;
+  }
+
+  // Disable slider and submit
+  const slider = document.querySelector('input[type="range"]');
+  const btn = document.querySelector('button');
+  if (slider) slider.disabled = true;
+  if (btn) btn.disabled = true;
 }
